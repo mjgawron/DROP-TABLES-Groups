@@ -2,4 +2,9 @@
 CSE-312 Group Project Repository
 
 Collaborators:
--Matt Gawron
+- Michael Laufer
+- John Abramo
+- Will Roberts
+- Ryan O'Sullivan
+- Jessica Breuhaus
+- Matt Gawron
