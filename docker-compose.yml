@@ -6,5 +6,7 @@ services:
     build: ./api
     environment:
       WAIT_HOSTS: mongo:27017
+  nginx:
+    build: ./view
     ports:
-      - '8080:5000'
+      - '8080:80'
