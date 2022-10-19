@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug: API",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/api/app.py",
+            "env": {
+                "FLASK_DEBUG": "1",
+                "MONGO_HOST": "localhost:27017"
+            },
+            "justMyCode": true,
+            "preLaunchTask": "mongo: start",
+            "postDebugTask": "mongo: stop"
+        },
+        {
+            "type": "chrome",
+            "request": "launch",
+            "name": "Debug: Vue in Chrome",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}/view",
+            "preLaunchTask": "vue: serve",
+        }
+    ]
+}

@@ -1,0 +1,24 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "vue: serve",
+        "options": {
+            "cwd": "./view"
+        },
+        "type": "npm",
+        "script": "serve",
+        "isBackground": true,
+      },
+      {
+        "label": "mongo: start",
+        "type": "shell",
+        "command": "docker start project",
+      },
+      {
+        "label": "mongo: stop",
+        "type": "shell",
+        "command": "docker stop project",
+      }
+    ]
+  }
