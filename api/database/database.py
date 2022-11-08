@@ -2,7 +2,8 @@ from pymongo import MongoClient
 import os
 
 host = os.environ.get("MONGO_HOST", "mongo")
-client = MongoClient(host)
+localhost = "localhost"
+client = MongoClient(localhost)
 db = client["project"]
 
 def get_next_id(collection): 
