@@ -1,6 +1,6 @@
 import json
 from flask import Blueprint, request, abort
-
+from database.question import create_question, delete_question, list_question, read_question, update_question
 
 question = Blueprint("question", __name__)
 
@@ -13,14 +13,14 @@ def post_question_route():
 @question.route("/<int:id>", methods=["GET"])
 def get_question_detail_route(id):
     result = read_question(id)
-    # check that the course exists
+    # check that the question exists
     if not result:
         abort(404)
     return json.dumps(result)
 
 @question.route("/<int:id>", methods=["PUT"])
 def put_question_route(id):
-    # check that the course exists
+    # check that the question exists
     if not read_question(id):
         abort(404)
     ### THIS IS NOT SAFE  ###
@@ -29,7 +29,7 @@ def put_question_route(id):
 
 @question.route("/<int:id>", methods=["DELETE"])
 def delete_question_route(id):
-    # check that the course exists
+    # check that the question exists
     if not read_question(id):
         abort(404)
     delete_question(id)

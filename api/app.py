@@ -17,6 +17,15 @@ if app.debug:
 app.register_blueprint(course, url_prefix="/api/course")
 app.register_blueprint(question, url_prefix="/api/question")
 
+@sock.route('/api/ws/<int:id>')
+def ws_handler(ws, id):
+    print(id)
+    while True:
+        data = ws.receive()
+        if data == 'close':
+            break
+        ws.send(data)
+
 
 if __name__ == '__main__':
     app.run("0.0.0.0", 5000, use_reloader=False)
