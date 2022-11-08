@@ -10,7 +10,7 @@
                 "FLASK_DEBUG": "1",
                 "MONGO_HOST": "localhost:27017"
             },
-            "justMyCode": true,
+            "justMyCode": false,
             "preLaunchTask": "mongo: start",
             "postDebugTask": "mongo: stop"
         },
