@@ -1,3 +1,4 @@
 pymongo
 flask
+flask-sock
 flask_cors

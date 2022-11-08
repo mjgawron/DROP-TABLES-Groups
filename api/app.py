@@ -1,7 +1,12 @@
 from flask import Flask
+from flask_sock import Sock
 from views.course import course
+from views.question import question
 
 app = Flask(__name__)
+app.config['SOCK_SERVER_OPTIONS'] = {'ping_interval': 25}
+
+sock = Sock(app)
 
 # enable cors for debug only
 if app.debug:
@@ -10,7 +15,7 @@ if app.debug:
 
 # Register each blueprint with its prefix
 app.register_blueprint(course, url_prefix="/api/course")
-
+app.register_blueprint(question, url_prefix="/api/question")
 
 
 if __name__ == '__main__':
