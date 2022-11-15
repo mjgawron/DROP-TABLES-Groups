@@ -8,6 +8,7 @@ Collaborators:
 - Ryan O'Sullivan rposulli
 - Jessica Breuhaus jlbreuha
 - Matt Gawron mjgawron
+<<<<<<< HEAD
 
 Creating a development database:
 
@@ -15,3 +16,5 @@ Creating a development database:
 
 Whiteboarding:
 https://www.figma.com/file/1RxoyM5xPGxcP5NOyxjDAw/Untitled?node-id=0%3A1
+=======
+>>>>>>> main
