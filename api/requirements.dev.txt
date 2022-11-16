@@ -1,3 +1,4 @@
 pymongo
 flask
+bcrypt
 flask_cors
