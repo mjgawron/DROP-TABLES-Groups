@@ -29,15 +29,3 @@ def delete_token(token):
     hashed = hashlib.sha256(token.encode()).hexdigest()
     db["accounts"].update_one({'token': hashed}, { '$pull': { 'token': hashed } })
 
-
-
-
-def read_account(id):
-    pass
-
-def update_account(id, data):
-    db["accounts"].update_one({"id": id}, {"$set": data})
-    return read_account(id)
-
-def delete_account(id):
-    db["accounts"].update_one({"id": id}, {"$set": {"deleted": True}})
