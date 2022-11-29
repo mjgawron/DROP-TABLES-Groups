@@ -18,7 +18,7 @@ def add_auth_token(user_id):
 
 def get_user_by_token(token):
     hashed = hashlib.sha256(token.encode()).hexdigest()
-    result = db["accounts"].find_one({"token": hashed, "deleted": False}, {"_id": 0, "deleted": 0, "password": 0})
+    result = db["accounts"].find_one({"token": hashed, "deleted": False}, {"_id": 0, "username": 1, "name": 1, "id": 1})
     return result
 
 def get_user_by_username(username):
