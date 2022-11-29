@@ -1,6 +1,7 @@
 import json
 from flask import Blueprint, request, abort
 from database.course import create_course, read_course, update_course, delete_course, list_course
+from database.questions import create_question, read_question, read_question_course, update_course, delete_question, list_question
 
 
 course = Blueprint("course", __name__)
@@ -40,3 +41,7 @@ def delete_course_route(id):
 @course.route("", methods=["GET"])
 def get_course():
     return json.dumps(list_course())
+
+@course.route("/<int:id>/questions",methods=["GET"])
+def get_course_detail_question_route(id):
+    return json.dumps(read_question_course(id))
