@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import axios from "axios";
 
 const routes = [
   {
@@ -28,6 +29,20 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  axios
+    .get("/account/status")
+    .then(() => {
+      if (to.name !== "login" && to.name !== "register") next();
+      else next("/");
+    })
+    .catch(() => {
+      console.log(to.name);
+      if (to.name !== "login" && to.name !== "register") next("login");
+      else next();
+    });
 });
 
 export default router;

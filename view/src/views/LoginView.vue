@@ -37,11 +37,6 @@ export default {
       invalidLogin: false,
     };
   },
-  beforeMount() {
-    axios.get("/account/status").then(() => {
-      this.$router.push("/");
-    });
-  },
   methods: {
     login(e) {
       e.preventDefault();

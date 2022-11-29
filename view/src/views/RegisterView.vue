@@ -31,7 +31,7 @@
 import axios from "axios";
 
 export default {
-  name: "LoginView",
+  name: "RegisterView",
   data() {
     return {
       username: "",
@@ -39,11 +39,6 @@ export default {
       name: "",
       invalidRegistration: false,
     };
-  },
-  beforeCreate() {
-    axios.get("/account/status").then(() => {
-      this.$router.push("/");
-    });
   },
   methods: {
     register(e) {
