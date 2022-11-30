@@ -40,8 +40,8 @@
         "error",
         {
           "endOfLine": "auto"
-        },
-      ],
+        }
+      ]
     }
   },
   "browserslist": [
