@@ -10,8 +10,8 @@ def read_question(id):
     result = db["questions"].find_one({"deleted":False,"id":id},{"_id":0,"deleted":0})
     return result
 
-def read_question_course(courseNum:int):
-    result = db["questions"].find({"deleted":False,"course":courseNum},{"_id": 0, "deleted": 0})
+def read_question_course(id:int):
+    result = db["questions"].find({"deleted":False,"id":id},{"_id": 0, "deleted": 0})
     return list(result)
 
 def update_question(id, data):
