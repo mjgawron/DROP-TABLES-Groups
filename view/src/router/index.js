@@ -39,7 +39,6 @@ router.beforeEach((to, from, next) => {
       else next("/");
     })
     .catch(() => {
-      console.log(to.name);
       if (to.name !== "login" && to.name !== "register") next("login");
       else next();
     });
