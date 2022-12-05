@@ -1,5 +1,6 @@
 from flask import Flask
 from views.course import course
+from views.account import account
 from views.questions import question
 
 app = Flask(__name__)
@@ -12,6 +13,8 @@ if app.debug:
 # Register each blueprint with its prefix
 app.register_blueprint(course, url_prefix="/api/course")
 app.register_blueprint(question, url_prefix="/api/question")
+app.register_blueprint(account, url_prefix="/api/account")
+
 
 
 if __name__ == '__main__':
