@@ -35,8 +35,9 @@ export default {
         description: this.description,
       };
       axios.post("/course", courseData).then((r) => {
-        const response = JSON.parse(r);
-        const id = toString(response[0]);
+        const data = r.data;
+        console.log(data);
+        const id = data["id"].toString();
         this.$router.push("/course/" + id);
       });
     },

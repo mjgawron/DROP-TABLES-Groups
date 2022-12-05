@@ -1,7 +1,7 @@
 import json
 from flask import Blueprint, request, abort
 from database.course import create_course, read_course, update_course, delete_course, list_course
-from database.questions import create_question, read_question, read_question_course, update_course, delete_question, list_question
+from database.questions import create_question, read_question, read_question_course, update_question, delete_question, list_question
 
 
 course = Blueprint("course", __name__)

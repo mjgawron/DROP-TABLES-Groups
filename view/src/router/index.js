@@ -24,6 +24,13 @@ const routes = [
       );
     },
   },
+  {
+    path: "/course-create",
+    name: "createcourse",
+    component: function () {
+      return import("../views/CreateCourse.vue");
+    },
+  },
 ];
 
 const router = createRouter({
