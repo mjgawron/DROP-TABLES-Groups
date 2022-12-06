@@ -2,7 +2,7 @@
   <div class="head">
     <h2>Your Courses:</h2>
   </div>
-  <div class="list" :key="course.courseName" v-for="course in courses">
+  <div class="list" :key="course.name" v-for="course in courses">
     <CourseComp :course="course" />
   </div>
 </template>

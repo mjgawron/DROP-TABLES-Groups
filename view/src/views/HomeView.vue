@@ -1,8 +1,7 @@
 <template>
   <div class="home">
-    <MenuBar username="" />
+    <MenuBar name="" />
     <div class="container">
-      <!-- Here we want to set courses equal to the method call of getCourses() -->
       <CourseList :courses="courses" />
     </div>
   </div>
@@ -18,7 +17,7 @@ export default {
   name: "HomeView",
   data() {
     return {
-      username: "",
+      name: "",
       courses: []
     }
   },
@@ -32,27 +31,16 @@ export default {
         this.courses = response.data
       })
       .catch(() => { 
-        console.log("HomeView.vue => getCourses() => catch ERROR")
+        console.log("HomeView.vue => beforeMount() => catch ERROR")
     });
     axios.get("/account/status")
       .then((response) => {
-        this.username = response.data.name
+        this.name = response.data.name
       })
       .catch(() => { 
-        console.log("HomeView.vue => getCourses() => catch ERROR")
+        console.log("HomeView.vue => beforeMount() => catch ERROR")
     });
   },
-  // methods: {
-  //   getCourses() {
-  //     axios.get("/api/course")
-  //     .then((response) => {
-  //       this.courses = response.data
-  //     })
-  //     .catch(() => { 
-  //       console.log("HomeView.vue => getCourses() => catch ERROR")
-  //     });
-  //   },
-  // },
 };
 </script>
 

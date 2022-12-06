@@ -1,8 +1,8 @@
 <template>
   <div class="course">
     <div class="info">
-      <h2>{{ course.courseName }}</h2>
-      <h4>{{ course.instructor }}</h4>
+      <h2>{{ course.name }}</h2>
+      <h4>{{ course.instructors.values[0] }}</h4>
     </div>
     <div class="link">
       <a href="/">{{ course.action }}</a>
