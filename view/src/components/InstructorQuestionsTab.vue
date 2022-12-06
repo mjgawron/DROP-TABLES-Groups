@@ -96,8 +96,6 @@ export default {
     };
   },
   prop: {
-    // the id of the course you are making this question for
-    // should be provided as a prop, and sent with the question object
     course_id: String,
   },
   methods: {
@@ -116,4 +114,10 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+</style>
