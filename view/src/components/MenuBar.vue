@@ -1,7 +1,7 @@
 <template>
   <div class="menubar">
     <img src="../assets/propellerhat.jpg" alt="jesse" width="50" height="50" />
-    <p>Welcome {{ user }}</p>
+    <p>Welcome {{ name }}!</p>
     <div id="dropdown">
       <button @click="onToggle">{{ buttonChar }}</button>
       <button @click="onJoin" v-if="toggle">Join</button>
@@ -12,16 +12,18 @@
 
 <script>
 /* eslint-disable */
-import axios from 'axios';
+//import axios from 'axios';
 
 export default {
     name: "MenuBar",
     data() {
       return {
-        user: "",
         toggle: false,
         buttonChar: "+",
       }
+    },
+    props: {
+      name: String
     },
     methods: {
       onToggle() {
@@ -35,17 +37,6 @@ export default {
 
       onCreate() {
         //this.$router.push("/course-create")
-      },
-
-      // /account/status returns an object with username, name, and id
-      isAuthentic() {
-        axios.get("/account/status")
-        .then((response) => {
-          this.user = response.data.username
-        })
-        .catch(() => { 
-          console.log("user is NOT authentic")
-        });
       },
     },
 };
