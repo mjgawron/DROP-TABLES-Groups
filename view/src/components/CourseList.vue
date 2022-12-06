@@ -3,8 +3,8 @@
     <div class="head">
       <h2>{{ message }}</h2>
     </div>
-    <div class="list" :key="course.courseName" v-for="course in courses">
-      <CourseComp :course="course" :id="id" />
+    <div class="list" :key="course.name" v-for="course in courses">
+      <CourseComp :course="course" />
     </div>
   </div>
 </template>
