@@ -41,6 +41,11 @@ def courses_by_enrollment(student_id):
     result = db["courses"].find({'students':student_id})
     return result
 
+#returns all the courses the student_id is not in
+def courses_can_enroll(student_id):
+    result = db["courses"].find({'student':{'$ne':student_id}})
+    return result
+
 #given a student_id and a course_id returns a true/false if that student is currently enrolled in that course
 def is_enrolled(student_id,course_id):
     result:dict = db["courses"].find_one({'id':course_id})
