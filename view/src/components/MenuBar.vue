@@ -32,11 +32,11 @@ export default {
       },
 
       onJoin() {
-        //this.$router.push("/course-join")
+        this.$router.push("/join")
       },
 
       onCreate() {
-        //this.$router.push("/course-create")
+        this.$router.push("/create")
       },
     },
 };

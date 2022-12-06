@@ -55,7 +55,6 @@
         v-model="question.answer"
         value="a"
       />
-
       <label for="radio_b">B</label>
       <input
         type="radio"

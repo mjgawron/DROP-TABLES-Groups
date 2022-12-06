@@ -32,7 +32,7 @@ export default {
       .then((response) => {
         this.courses = response.data
       })
-      .catch(() => { 
+      .catch(() => {
         console.log("HomeView.vue => beforeMount() => catch ERROR")
     });
     axios.get("/account/status")

@@ -7,19 +7,15 @@
   </nav>
   <router-view />
   <br />
-  <InstructorQuestionsTab />
 </template>
 
 <script>
 /* eslint-disable */
 import axios from "axios";
-import InstructorQuestionsTab from "./components/InstructorQuestionsTab.vue";
 
 export default {
   name: "App",
-  components: {
-    InstructorQuestionsTab
-  }, 
+  components: {},
   methods: {
     logout() {
       axios.post("/account/logout").then(() => {
