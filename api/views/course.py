@@ -7,7 +7,7 @@ from html import escape
 
 course = Blueprint("course", __name__)
 
-
+#Post request for creating a course, makes user that submitted post request an instructor, SAFE
 @course.route("", methods=["POST"])
 def post_course_route():
     token = request.cookies.get("auth")
@@ -16,6 +16,7 @@ def post_course_route():
     save_data = {"name":escape(data["name"]),"description":escape(data["description"]),"instructors":[user.get("id")],"students":[]}
     return json.dumps(create_course(save_data)), 201
 
+#Post request for adding a user to the enrolled students array inside a course collection
 @course.route("/<int:id>/join",method=["POST"])
 def post_course_route_join():
     course_id = id
@@ -24,6 +25,7 @@ def post_course_route_join():
     user_id = user.get("id")
     return json.dumps(enroll_student(user_id,course_id)) , 201
 
+#Get request for recieving a single course given an id
 @course.route("/<int:id>", methods=["GET"])
 def get_course_detail_route(id):
     result = read_course(id)
@@ -32,6 +34,7 @@ def get_course_detail_route(id):
         abort(404)
     return json.dumps(result)
 
+#Put request for editing updating a course, must be an instructor or aborts
 @course.route("/<int:id>", methods=["PUT"])
 def put_course_route(id):
     token = request.cookies.get("auth")
@@ -47,6 +50,7 @@ def put_course_route(id):
     save_data = {"name":escape(data["name"]),"description":escape(data["description"]),"instructors":[user.get("id")]}
     return json.dumps(update_course(id, save_data))
 
+#Delete request for removing a course, must be an instructor or aborts
 @course.route("/<int:id>", methods=["DELETE"])
 def delete_course_route(id):
     token = request.cookies.get("auth")
@@ -61,14 +65,17 @@ def delete_course_route(id):
     delete_course(id)
     return "deleted", 204
 
+#Get request for /api/course/ gets all available courses
 @course.route("", methods=["GET"])
 def get_course():
     return json.dumps(list_course())
 
+#Get request for /api/course/course_id/questions gets all questions for that course
 @course.route("/<int:id>/questions",methods=["GET"])
 def get_course_detail_question_route(id):
     return json.dumps(read_question_course(id))
 
+#Get request for /api/course/user, gets user id from auth token and gets all courses they are enrolled in
 @course.route("/user",methods=["GET"])
 def get_courses_user():
     token = request.cookies.get("auth")
