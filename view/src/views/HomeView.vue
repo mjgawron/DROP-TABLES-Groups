@@ -28,7 +28,7 @@ export default {
   beforeMount() {
     // Send two get requests, one for the username and one for the courses
     // backend uses the auth token to verify
-    axios.get("/api/course/user")
+    axios.get("/course/user")
       .then((response) => {
         this.courses = response.data
       })

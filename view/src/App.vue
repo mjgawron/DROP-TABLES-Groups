@@ -7,19 +7,19 @@
   </nav>
   <router-view />
   <br />
-  <HomeView />
+  <InstructorQuestionsTab />
 </template>
 
 <script>
 /* eslint-disable */
 import axios from "axios";
-import HomeView from "./views/HomeView.vue";
+import InstructorQuestionsTab from "./components/InstructorQuestionsTab.vue";
 
 export default {
   name: "App",
   components: {
-    HomeView,
-  },
+    InstructorQuestionsTab
+  }, 
   methods: {
     logout() {
       axios.post("/account/logout").then(() => {
