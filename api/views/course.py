@@ -29,10 +29,11 @@ def put_course_route(id):
     token = request.cookies.get("auth")
     data = request.json
     user:dict = get_user_by_token(token)
-    # check that the course exists
     current_course:dict = read_course(id)
+    # check that the course exists
     if not current_course:
         abort(404)
+    # check user is an instructor
     if user.get("id") not in current_course.get("instructors"):
         abort(400)    
     save_data = {"name":escape(data["name"]),"description":escape(data["description"]),"instructors":[user.get("id")]}
@@ -40,9 +41,15 @@ def put_course_route(id):
 
 @course.route("/<int:id>", methods=["DELETE"])
 def delete_course_route(id):
+    token = request.cookies.get("auth")
+    user:dict = get_user_by_token(token)
+    current_course:dict = read_course(id)
     # check that the course exists
-    if not read_course(id):
+    if not current_course:
         abort(404)
+    # check user is an instructor
+    if user.get("id") not in current_course.get("instructors"):
+        abort(400)  
     delete_course(id)
     return "deleted", 204
 
