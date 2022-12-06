@@ -25,11 +25,20 @@ const routes = [
     },
   },
   {
-    path: "/course-create",
+    path: "/create",
     name: "createcourse",
     component: function () {
       return import(
         /* webpackChunkName: "createcourse" */ "../views/CreateCourse.vue"
+      );
+    },
+  },
+  {
+    path: "/join",
+    name: "joincourse",
+    component: function () {
+      return import(
+        /* webpackChunkName: "joincourse" */ "../views/JoinView.vue"
       );
     },
   },
