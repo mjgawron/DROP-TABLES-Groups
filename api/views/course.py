@@ -17,7 +17,7 @@ def post_course_route():
     return json.dumps(create_course(save_data)), 201
 
 #Post request for adding a user to the enrolled students array inside a course collection
-@course.route("/<int:id>/join",method=["POST"])
+@course.route("/<int:id>/join",methods=["POST"])
 def post_course_route_join():
     course_id = id
     token = request.cooksies.get("auth")
