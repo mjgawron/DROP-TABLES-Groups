@@ -3,7 +3,6 @@ from flask import Blueprint, request, abort
 from database.questions import create_question, read_question, read_question_course, update_question, delete_question, list_question
 from database.account import get_user_by_token
 from database.course import read_course
-from html import escape
 
 question = Blueprint("question", __name__)
 
@@ -17,7 +16,7 @@ def post_question_route():
     if ( not _verify_instructor(token,course_id)):
         abort(400)
     
-    save_data = {"course_id":course_id,"question_detail":escape(data["question_detail"]),"answer_a":escape(data["answer_a"]),"answer_b":escape(data["answer_b"]),"answer_c":escape(data["answer_c"]),"answer_d":escape(data["answer_d"]),"answer":escape(data["answer"])}
+    save_data = {"course_id":course_id,"question_detail":data["question_detail"],"answer_a":data["answer_a"],"answer_b":data["answer_b"],"answer_c":data["answer_c"],"answer_d":data["answer_d"],"answer":data["answer"]}
     return json.dumps(create_question(save_data)), 201
 
 @question.route("/<int:id>", methods=["GET"])
@@ -42,7 +41,7 @@ def put_question_route(id):
         abort(400)
 
     data = request.json
-    save_data = {"course_id":course_id,"question_detail":escape(data["question_detail"]),"answer_a":escape(data["answer_a"]),"answer_b":escape(data["answer_b"]),"answer_c":escape(data["answer_c"]),"answer_d":escape(data["answer_d"]),"answer":escape(data["answer"])}
+    save_data = {"course_id":course_id,"question_detail":data["question_detail"],"answer_a":data["answer_a"],"answer_b":data["answer_b"],"answer_c":data["answer_c"],"answer_d":data["answer_d"],"answer":data["answer"]}
     return json.dumps(update_question(id, data))
 
 @question.route("/<int:id>", methods=["DELETE"])
