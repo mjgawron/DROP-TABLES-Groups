@@ -2,14 +2,31 @@
   <nav>
     <router-link to="/">Home</router-link> |
     <router-link to="/login">Login</router-link> |
-    <router-link to="/register">Register</router-link>
+    <router-link to="/register">Register</router-link> |
+    <a @click="logout">Logout</a>
   </nav>
   <router-view />
+  <br />
+  <HomeView />
 </template>
 
 <script>
+/* eslint-disable */
+import axios from "axios";
+import HomeView from "./views/HomeView.vue";
+
 export default {
   name: "App",
+  components: {
+    HomeView,
+  },
+  methods: {
+    logout() {
+      axios.post("/account/logout").then(() => {
+        this.$router.push("login");
+      });
+    },
+  },
 };
 </script>
 
@@ -21,16 +38,21 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-
 nav {
   padding: 30px;
+  display: inline-flex;
+  flex-direction: row;
+  color: white;
+  background-color: darkslategray;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 95%;
 }
-
 nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: white;
 }
-
 nav a.router-link-exact-active {
   color: #42b983;
 }
