@@ -29,6 +29,44 @@ const routes = [
       );
     },
   },
+  {
+    path: "/course-create",
+    name: "createcourse",
+    component: function () {
+      return import(
+        /* webpackChunkName: "createcourse" */ "../views/CreateCourse.vue"
+      );
+    },
+  },
+  {
+    path: "/course/:course_id",
+    name: "course",
+    component: function () {
+      return import(/* webpackChunkName: "course" */ "../views/CourseView.vue");
+    },
+    children: [
+      {
+        path: "questions",
+        name: "questions",
+        component: function () {
+          return import(
+            /* webpackChunkName: "questions" */ "../components/QuestionsTab.vue"
+          );
+        },
+        children: [
+          {
+            path: ":question_id",
+            name: "question",
+            component: function () {
+              return import(
+                /* webpackChunkName: "questions" */ "../components/SingularQuestion.vue"
+              );
+            },
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 const router = createRouter({
