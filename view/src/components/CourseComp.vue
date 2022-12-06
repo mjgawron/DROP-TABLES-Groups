@@ -1,11 +1,11 @@
 <template>
   <div class="course">
     <div class="info">
-      <h2>{{ courseName }}</h2>
-      <h4>{{ instructor }}</h4>
+      <h2>{{ course.courseName }}</h2>
+      <h4>{{ course.instructor }}</h4>
     </div>
     <div class="link">
-      <a @click="enter">{{ action }}</a>
+      <a @click="enter">{{ course.action }}</a>
     </div>
   </div>
 </template>
@@ -16,9 +16,7 @@ import axios from "axios";
 export default {
   name: "CourseComp",
   props: {
-    courseName: String,
-    instructor: String,
-    action: String,
+    course: Object,
     id: Number,
   },
   methods: {
