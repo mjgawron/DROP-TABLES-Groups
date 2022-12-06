@@ -26,12 +26,17 @@ def get_course_detail_route(id):
 
 @course.route("/<int:id>", methods=["PUT"])
 def put_course_route(id):
-    # check that the course exists
-    if not read_course(id):
-        abort(404)
-    ### THIS IS NOT SAFE  ###
+    token = request.cookies.get("auth")
     data = request.json
-    return json.dumps(update_course(id, data))
+    user:dict = get_user_by_token(token)
+    # check that the course exists
+    current_course:dict = read_course(id)
+    if not current_course:
+        abort(404)
+    if user.get("id") not in current_course.get("instructors"):
+        abort(400)    
+    save_data = {"name":escape(data["name"]),"description":escape(data["description"]),"instructors":[user.get("id")]}
+    return json.dumps(update_course(id, save_data))
 
 @course.route("/<int:id>", methods=["DELETE"])
 def delete_course_route(id):
