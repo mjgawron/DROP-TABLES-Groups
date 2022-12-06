@@ -1,7 +1,7 @@
 import json
 from flask import Blueprint, request, abort
 from database.chat import create_chat, list_chat
-from database.course import create_course, is_member, read_course, update_course, delete_course, list_course, enroll_student, courses_by_enrollment
+from database.course import create_course, is_member, read_course, update_course, delete_course, list_course, enroll_student, courses_by_enrollment, courses_can_enroll
 from database.questions import create_question, read_question, read_question_course, update_question, delete_question, list_question
 from views.account import get_user_by_token
 from html import escape
@@ -103,3 +103,11 @@ def post_courses_chat(id):
         save_data = {"message": escape(data["message"]), "course_id": id, "user": user["name"]}
         return create_chat(save_data)
     return "error", 400
+    
+#Get request for /api/course/user/joinable, gets user id from auth token and gets all courses they aren't enrolled in
+@course.route("/user/joinable",methods=["GET"])
+def get_courses_user_joinable():
+    token = request.cookies.get("auth")
+    user:dict = get_user_by_token(token)
+    user_id = user.get("id")
+    return json.dumps(courses_can_enroll(user_id))
