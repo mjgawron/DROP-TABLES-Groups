@@ -3,6 +3,7 @@
     <form @submit="createCourse">
       <label for="name-field">Course Name:</label>
       <input type="text" id="name-field" name="name" v-model="name" required />
+
       <label for="description-field">Course Description:</label>
       <input
         type="text"

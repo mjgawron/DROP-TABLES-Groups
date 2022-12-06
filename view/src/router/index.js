@@ -28,7 +28,9 @@ const routes = [
     path: "/course-create",
     name: "createcourse",
     component: function () {
-      return import("../views/CreateCourse.vue");
+      return import(
+        /* webpackChunkName: "register" */ "../views/CreateCourse.vue"
+      );
     },
   },
 ];

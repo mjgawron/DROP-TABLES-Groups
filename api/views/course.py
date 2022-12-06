@@ -2,16 +2,19 @@ import json
 from flask import Blueprint, request, abort
 from database.course import create_course, read_course, update_course, delete_course, list_course
 from database.questions import create_question, read_question, read_question_course, update_question, delete_question, list_question
-
+from views.account import get_user_by_token
+from html import escape
 
 course = Blueprint("course", __name__)
 
 
 @course.route("", methods=["POST"])
 def post_course_route():
-    ### THIS IS NOT SAFE ###
+    token = request.cookies.get("auth")
     data = request.json
-    return json.dumps(create_course(data)), 201
+    user:dict = get_user_by_token(token)
+    save_data = {"name":escape(data["name"]),"description":escape(data["description"]),"instructors":[user.get("id")]}
+    return json.dumps(create_course(save_data)), 201
 
 @course.route("/<int:id>", methods=["GET"])
 def get_course_detail_route(id):
