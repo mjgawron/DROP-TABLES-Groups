@@ -28,11 +28,16 @@ export default {
   margin: 20px auto;
   border: 2px solid black;
   border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
 }
 .info {
   text-align: left;
 }
 .link {
   text-align: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 </style>
