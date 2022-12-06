@@ -29,9 +29,27 @@ const routes = [
     name: "createcourse",
     component: function () {
       return import(
-        /* webpackChunkName: "register" */ "../views/CreateCourse.vue"
+        /* webpackChunkName: "createcourse" */ "../views/CreateCourse.vue"
       );
     },
+  },
+  {
+    path: "/course/:id",
+    name: "course",
+    component: function () {
+      return import(/* webpackChunkName: "course" */ "../views/CourseView.vue");
+    },
+    children: [
+      {
+        path: "questions",
+        name: "questions",
+        component: function () {
+          return import(
+            /* webpackChunkName: "questions" */ "../components/HelloWorld.vue"
+          );
+        },
+      },
+    ],
   },
 ];
 
