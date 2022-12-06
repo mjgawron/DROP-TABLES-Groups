@@ -21,3 +21,15 @@ def delete_course(id):
 def list_course():
     result = db["courses"].find({"deleted": False}, {"_id": 0, "deleted": 0})
     return list(result)
+
+def enroll_student(student_id,course_id):
+    result = db["courses"].update_one({'id':course_id}, { '$push': { 'students': student_id } })
+    return result
+
+def unenroll_student(student_id,course_id):
+    result = db["courses"].update_one({'id':course_id},{'$pull',{'students':student_id}})
+    return result
+
+def courses_by_enrollment(student_id):
+    result = db["courses"].find({'students':student_id})
+    return result

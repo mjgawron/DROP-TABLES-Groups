@@ -1,6 +1,6 @@
 import json
 from flask import Blueprint, request, abort
-from database.course import create_course, read_course, update_course, delete_course, list_course
+from database.course import create_course, read_course, update_course, delete_course, list_course, enroll_student, courses_by_enrollment
 from database.questions import create_question, read_question, read_question_course, update_question, delete_question, list_question
 from views.account import get_user_by_token
 from html import escape
@@ -13,8 +13,16 @@ def post_course_route():
     token = request.cookies.get("auth")
     data = request.json
     user:dict = get_user_by_token(token)
-    save_data = {"name":escape(data["name"]),"description":escape(data["description"]),"instructors":[user.get("id")]}
+    save_data = {"name":escape(data["name"]),"description":escape(data["description"]),"instructors":[user.get("id")],"students":[]}
     return json.dumps(create_course(save_data)), 201
+
+@course.route("/<int:id>/join",method=["POST"])
+def post_course_route_join():
+    course_id = id
+    token = request.cooksies.get("auth")
+    user:dict = get_user_by_token(token)
+    user_id = user.get("id")
+    return json.dumps(enroll_student(user_id,course_id)) , 201
 
 @course.route("/<int:id>", methods=["GET"])
 def get_course_detail_route(id):
@@ -60,3 +68,10 @@ def get_course():
 @course.route("/<int:id>/questions",methods=["GET"])
 def get_course_detail_question_route(id):
     return json.dumps(read_question_course(id))
+
+@course.route("/user",methods=["GET"])
+def get_courses_user():
+    token = request.cookies.get("auth")
+    user:dict = get_user_by_token(token)
+    user_id = user.get("id")
+    return json.dumps(courses_by_enrollment(user_id))
