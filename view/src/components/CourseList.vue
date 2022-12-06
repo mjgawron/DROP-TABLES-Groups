@@ -20,7 +20,6 @@ export default {
       // and will render each as a CourseComp
       message: String,
       courses: Array,
-      id: Number,
     },
     components: {
       CourseComp,

@@ -1,8 +1,8 @@
 <template>
   <div class="course">
     <div class="info">
-      <h2>{{ course.courseName }}</h2>
-      <h4>{{ course.instructor }}</h4>
+      <h2>{{ course.name }}</h2>
+      <h4>{{ course.instructors.values[0] }}</h4>
     </div>
     <div class="link">
       <a @click="enter">{{ course.action }}</a>
@@ -17,12 +17,11 @@ export default {
   name: "CourseComp",
   props: {
     course: Object,
-    id: Number,
   },
   methods: {
     enter() {
       if (this.action == "Join") {
-        axios.post("/course/" + this.id + "/join").then(() => {
+        axios.post("/course/" + this.course.id + "/join").then(() => {
           this.$router.push("/course/" + this.id);
         });
       } else {
