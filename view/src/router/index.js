@@ -24,6 +24,62 @@ const routes = [
       );
     },
   },
+  {
+    path: "/create",
+    name: "createcourse",
+    component: function () {
+      return import(
+        /* webpackChunkName: "createcourse" */ "../views/CreateCourse.vue"
+      );
+    },
+  },
+  {
+    path: "/join",
+    name: "joincourse",
+    component: function () {
+      return import(
+        /* webpackChunkName: "joincourse" */ "../views/JoinView.vue"
+      );
+    },
+  },
+  {
+    path: "/course/:course_id",
+    name: "course",
+    component: function () {
+      return import(/* webpackChunkName: "course" */ "../views/CourseView.vue");
+    },
+    children: [
+      {
+        path: "questions",
+        name: "questions",
+        component: function () {
+          return import(
+            /* webpackChunkName: "questions" */ "../components/QuestionsTab.vue"
+          );
+        },
+        children: [
+          {
+            path: ":question_id",
+            name: "question",
+            component: function () {
+              return import(
+                /* webpackChunkName: "questions" */ "../components/SingularQuestion.vue"
+              );
+            },
+          },
+        ],
+      },
+      {
+        path: "chat",
+        name: "chat",
+        component: function () {
+          return import(
+            /* webpackChunkName: "chat" */ "../components/ChatTab.vue"
+          );
+        },
+      },
+    ],
+  },
 ];
 
 const router = createRouter({
