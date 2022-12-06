@@ -1,9 +1,11 @@
 <template>
-  <div class="head">
-    <h2>Your Courses:</h2>
-  </div>
-  <div class="list" :key="course.name" v-for="course in courses">
-    <CourseComp :course="course" />
+  <div>
+    <div class="head">
+      <h2>{{ message }}</h2>
+    </div>
+    <div class="list" :key="course.name" v-for="course in courses">
+      <CourseComp :course="course" />
+    </div>
   </div>
 </template>
 
@@ -14,8 +16,7 @@ import CourseComp from './CourseComp.vue';
 export default {
     name: "CourseList",
     props: {
-      // CourseList recieves an array of course objects
-      // and will render each as a CourseComp
+      message: String,
       courses: Array,
     },
     components: {
@@ -29,14 +30,5 @@ export default {
   width: 100%;
   margin-left: 40px;
   text-align: left;
-}
-.list {
-  width: 90%;
-  padding:5px;
-  margin: 5px auto;
-  border: 2px solid black;
-  border-radius: 8px;
-  justify-content: space-between;
-  align-items: center;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <MenuBar name="" />
+    <MenuBar :name="name" />
     <div class="container">
       <CourseList :courses="courses" />
     </div>
@@ -37,7 +37,7 @@ export default {
       .then((response) => {
         this.name = response.data.name
       })
-      .catch(() => { 
+      .catch(() => {
         console.log("HomeView.vue => beforeMount() => catch ERROR")
     });
   },
@@ -49,7 +49,7 @@ export default {
   display: inline-flex;
   flex-direction: column;
   color: white;
-  background-color: darkslategray;
+  background-color: black;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
@@ -59,7 +59,7 @@ export default {
   display: inline-flex;
   flex-direction: column;
   color: white;
-  background-color: gray;
+  background-color: lightslategray;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;

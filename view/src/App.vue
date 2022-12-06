@@ -7,19 +7,14 @@
   </nav>
   <router-view />
   <br />
-  <HomeView />
 </template>
 
 <script>
 /* eslint-disable */
 import axios from "axios";
-import HomeView from "./views/HomeView.vue";
 
 export default {
   name: "App",
-  components: {
-    HomeView,
-  },
   methods: {
     logout() {
       axios.post("/account/logout").then(() => {

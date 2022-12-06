@@ -1,27 +1,27 @@
 <template>
   <div class="menubar">
     <img src="../assets/propellerhat.jpg" alt="jesse" width="50" height="50" />
-    <p>Welcome {{ user }}</p>
-    <div id="dropdown">
+    <p>Welcome {{ name }}</p>
+    <div class="dropdown">
       <button @click="onToggle">{{ buttonChar }}</button>
-      <button @click="onJoin" v-if="toggle">Join</button>
-      <button @click="onCreate" v-if="toggle">Create</button>
+      <router-link to="/join" v-if="toggle">Join|</router-link>
+      <router-link to="/create" v-if="toggle">|Create</router-link>
     </div>
   </div>
 </template>
 
 <script>
 /* eslint-disable */
-import axios from 'axios';
-
 export default {
     name: "MenuBar",
     data() {
       return {
-        user: "",
         toggle: false,
         buttonChar: "+",
       }
+    },
+    props: {
+      name: String,
     },
     methods: {
       onToggle() {
@@ -30,22 +30,11 @@ export default {
       },
 
       onJoin() {
-        //this.$router.push("/course-join")
+        this.$router.push("/join")
       },
 
       onCreate() {
-        //this.$router.push("/course-create")
-      },
-
-      // /account/status returns an object with username, name, and id
-      isAuthentic() {
-        axios.get("/account/status")
-        .then((response) => {
-          this.user = response.data.username
-        })
-        .catch(() => { 
-          console.log("user is NOT authentic")
-        });
+        this.$router.push("/create")
       },
     },
 };
@@ -55,10 +44,13 @@ export default {
 .menubar {
   display: flex;
   color: white;
-  background-color: darkslategray;
+  background-color: black;
   justify-content:space-evenly;
   align-items: center;
   align-self: center;
   width: 100%;
+}
+.dropdown {
+  background-color: slategray;
 }
 </style>
