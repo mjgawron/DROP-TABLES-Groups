@@ -60,6 +60,15 @@ const routes = [
           },
         ],
       },
+      {
+        path: "chat",
+        name: "chat",
+        component: function () {
+          return import(
+            /* webpackChunkName: "chat" */ "../components/ChatTab.vue"
+          );
+        },
+      },
     ],
   },
 ];

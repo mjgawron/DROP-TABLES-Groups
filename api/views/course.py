@@ -1,6 +1,7 @@
 import json
 from flask import Blueprint, request, abort
-from database.course import create_course, read_course, update_course, delete_course, list_course, enroll_student, courses_by_enrollment
+from database.chat import create_chat, list_chat
+from database.course import create_course, is_member, read_course, update_course, delete_course, list_course, enroll_student, courses_by_enrollment
 from database.questions import create_question, read_question, read_question_course, update_question, delete_question, list_question
 from views.account import get_user_by_token
 from html import escape
@@ -17,7 +18,7 @@ def post_course_route():
     return json.dumps(create_course(save_data)), 201
 
 #Post request for adding a user to the enrolled students array inside a course collection
-@course.route("/<int:id>/join",method=["POST"])
+@course.route("/<int:id>/join",methods=["POST"])
 def post_course_route_join():
     course_id = id
     token = request.cooksies.get("auth")
@@ -82,3 +83,23 @@ def get_courses_user():
     user:dict = get_user_by_token(token)
     user_id = user.get("id")
     return json.dumps(courses_by_enrollment(user_id))
+
+@course.route("/<int:id>/chat", methods=["GET"])
+def get_courses_chat(id):
+    token = request.cookies.get("auth")
+    user:dict = get_user_by_token(token)
+    user_id = user.get("id")
+    if is_member(user_id, id):
+        return json.dumps(list_chat(id))
+    return "error", 400
+
+@course.route("/<int:id>/chat", methods=["POST"])
+def post_courses_chat(id):
+    token = request.cookies.get("auth")
+    user:dict = get_user_by_token(token)
+    user_id = user.get("id")
+    if is_member(user_id, id):
+        data = request.json
+        save_data = {"message": escape(data["message"]), "course_id": id, "user": user["name"]}
+        return create_chat(save_data)
+    return "error", 400
