@@ -34,7 +34,7 @@ const routes = [
     },
   },
   {
-    path: "/course/:id",
+    path: "/course/:course_id",
     name: "course",
     component: function () {
       return import(/* webpackChunkName: "course" */ "../views/CourseView.vue");
@@ -45,9 +45,20 @@ const routes = [
         name: "questions",
         component: function () {
           return import(
-            /* webpackChunkName: "questions" */ "../components/HelloWorld.vue"
+            /* webpackChunkName: "questions" */ "../components/QuestionsTab.vue"
           );
         },
+        children: [
+          {
+            path: ":question_id",
+            name: "question",
+            component: function () {
+              return import(
+                /* webpackChunkName: "questions" */ "../components/SingularQuestion.vue"
+              );
+            },
+          },
+        ],
       },
     ],
   },

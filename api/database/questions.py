@@ -11,7 +11,7 @@ def read_question(id):
     return result
 
 def read_question_course(id:int):
-    result = db["questions"].find({"deleted":False,"id":id},{"_id": 0, "deleted": 0})
+    result = db["questions"].find({"deleted":False,"course_id":id},{"_id": 0, "deleted": 0})
     return list(result)
 
 def update_question(id, data):
