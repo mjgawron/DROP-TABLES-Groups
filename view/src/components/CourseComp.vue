@@ -5,21 +5,39 @@
       <h4>{{ instructor }}</h4>
     </div>
     <div class="link">
-      <a href="/">{{ action }}</a>
+      <a @click="enter">{{ action }}</a>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "CourseComp",
   props: {
     courseName: String,
     instructor: String,
     action: String,
+    id: Number,
+  },
+  methods: {
+    enter() {
+      if (this.action == "Join") {
+        axios.post("/course/" + this.id + "/join").then(() => {
+          this.$router.push("/course/" + this.id);
+        });
+      } else {
+        this.$router.push("/course/" + this.id);
+      }
+    },
   },
 };
 </script>
+
+<!--GET   /api/course             gets all courses-->
+<!--GET   /api/coursse/<id>       gets specific course-->
+<!--POST  /api/course/<id>/join   join specific course-->
 
 <style scoped>
 .course {
@@ -39,5 +57,10 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+a {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
 }
 </style>
