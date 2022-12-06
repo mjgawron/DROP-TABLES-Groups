@@ -1,10 +1,9 @@
 import json
 from flask import Blueprint, request, abort
 from database.chat import create_chat, list_chat
-from database.course import create_course, is_member, read_course, update_course, delete_course, list_course, enroll_student, courses_by_enrollment, courses_can_enroll
+from database.course import create_course, is_member, read_course, update_course, delete_course, list_course, enroll_student, courses_by_enrollment, courses_can_enroll, is_instructor
 from database.questions import create_question, read_question, read_question_course, update_question, delete_question, list_question
 from views.account import get_user_by_token
-from html import escape
 
 course = Blueprint("course", __name__)
 
@@ -14,7 +13,7 @@ def post_course_route():
     token = request.cookies.get("auth")
     data = request.json
     user:dict = get_user_by_token(token)
-    save_data = {"name":escape(data["name"]),"description":escape(data["description"]),"instructors":[user.get("id")],"students":[]}
+    save_data = {"name":data["name"],"description":data["description"],"instructors":{user.get("id"):user.get("name")},"students":[]}
     return json.dumps(create_course(save_data)), 201
 
 #Post request for adding a user to the enrolled students array inside a course collection
@@ -46,9 +45,9 @@ def put_course_route(id):
     if not current_course:
         abort(404)
     # check user is an instructor
-    if user.get("id") not in current_course.get("instructors"):
-        abort(400)    
-    save_data = {"name":escape(data["name"]),"description":escape(data["description"]),"instructors":[user.get("id")]}
+    if not is_instructor(user.get("id"),id):
+        abort(400)
+    save_data = {"name":data["name"],"description":data["description"],"instructors":{user.get("id"):user.get("name")}}
     return json.dumps(update_course(id, save_data))
 
 #Delete request for removing a course, must be an instructor or aborts
@@ -61,8 +60,8 @@ def delete_course_route(id):
     if not current_course:
         abort(404)
     # check user is an instructor
-    if user.get("id") not in current_course.get("instructors"):
-        abort(400)  
+    if not is_instructor(user.get("id"),id):
+        abort(400) 
     delete_course(id)
     return "deleted", 204
 
