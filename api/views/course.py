@@ -100,8 +100,9 @@ def post_courses_chat(id):
     user_id = user.get("id")
     if is_member(user_id, id):
         data = request.json
-        save_data = {"message": escape(data["message"]), "course_id": id, "user": user["name"]}
-        return create_chat(save_data)
+        save_data = {"message": data["message"], "course_id": id, "user": user["name"]}
+        create_chat(save_data)
+        return "success"
     return "error", 400
     
 #Get request for /api/course/user/joinable, gets user id from auth token and gets all courses they aren't enrolled in

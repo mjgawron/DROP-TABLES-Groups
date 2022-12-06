@@ -7,5 +7,5 @@ def create_chat(data):
     return 
 
 def list_chat(course_id):
-    result = db["chat"].find({"deleted": False}, {"_id": 0, "deleted": 0})
+    result = db["chat"].find({"course_id": course_id, "deleted": False}, {"_id": 0, "deleted": 0})
     return list(result)
