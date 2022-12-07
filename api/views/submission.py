@@ -15,5 +15,8 @@ def post_submission_route():
     token = request.cookies.get("auth")
     user:dict = get_user_by_token(token)
 
-    
 
+@submission.route("/<int:course_id>/grades",methods=["GET"])
+def get_course_grades():
+    #if instructor returns list of dicts [{student_id: {question_id: correctness}}]
+    return

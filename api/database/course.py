@@ -41,6 +41,13 @@ def courses_by_enrollment(student_id):
     result = db["courses"].find({'students':student_id})
     return result
 
+#returns all the courses the instructor_id is an instructor for
+def courses_by_ownership(instructor_id):
+    result = db["courses"].find({'instructors':instructor_id})
+    return result
+
+
+
 #returns all the courses the student_id is not in
 def courses_can_enroll(student_id):
     result = db["courses"].find({'students':{'$ne':student_id}})

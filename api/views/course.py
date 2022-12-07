@@ -75,8 +75,8 @@ def get_course():
 def get_course_detail_question_route(id):
     return json.dumps(read_question_course(id))
 
-#Get request for /api/course/user, gets user id from auth token and gets all courses they are enrolled in
-@course.route("/user",methods=["GET"])
+#Get request for /api/course/member, gets user id from auth token and gets all courses they are enrolled in
+@course.route("/member",methods=["GET"])
 def get_courses_user():
     token = request.cookies.get("auth")
     user:dict = get_user_by_token(token)
