@@ -8,8 +8,6 @@ submission = Blueprint("submission",__name__)
 @submission.route("",methods=["POST"])
 def post_submission_route():
     data = request.json
-
-    course_id = data["course_id"]
     question_id = data["question_id"]
 
     token = request.cookies.get("auth")
