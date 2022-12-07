@@ -6,10 +6,10 @@
         <span class="message"> {{ chat.message }} </span>
       </div>
     </div>
-    <div class="send-chat">
+    <form @submit="sendMessage" class="send-chat">
       <input type="text" class="message-input" v-model="newMessage" />
-      <button @click="sendMessage">Send</button>
-    </div>
+      <button>Send</button>
+    </form>
   </div>
 </template>
 
@@ -35,7 +35,8 @@ export default {
         this.chatHistory = response.data;
       });
     },
-    sendMessage() {
+    sendMessage(e) {
+      e.preventDefault();
       const messageData = {
         message: this.newMessage,
       };
