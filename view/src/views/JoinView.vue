@@ -2,7 +2,7 @@
   <div class="join">
     <h1>Available Courses</h1>
     <hr style="width: 65%" />
-    <CourseList :courses="courses" />
+    <CourseList :courses="courses" action="Join" />
   </div>
 </template>
 

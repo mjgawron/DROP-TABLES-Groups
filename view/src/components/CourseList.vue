@@ -4,7 +4,7 @@
       <h2>{{ message }}</h2>
     </div>
     <div class="list" :key="course.name" v-for="course in courses">
-      <CourseComp :course="course" />
+      <CourseComp :course="course" :action="action" />
     </div>
   </div>
 </template>
@@ -20,6 +20,7 @@ export default {
       // and will render each as a CourseComp
       message: String,
       courses: Array,
+      action: String,
     },
     components: {
       CourseComp,
