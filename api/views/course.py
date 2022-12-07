@@ -13,7 +13,7 @@ def post_course_route():
     token = request.cookies.get("auth")
     data = request.json
     user:dict = get_user_by_token(token)
-    save_data = {"name":data["name"],"description":data["description"],"instructors":{user.get("id"):user.get("name")},"students":[]}
+    save_data = {"name":data["name"],"description":data["description"],"instructors":[user.get("id")],"students":[]}
     return json.dumps(create_course(save_data)), 201
 
 #Post request for adding a user to the enrolled students array inside a course collection
@@ -47,7 +47,7 @@ def put_course_route(id):
     # check user is an instructor
     if not is_instructor(user.get("id"),id):
         abort(400)
-    save_data = {"name":data["name"],"description":data["description"],"instructors":{user.get("id"):user.get("name")}}
+    save_data = {"name":data["name"],"description":data["description"],"instructors":user.get("id")}
     return json.dumps(update_course(id, save_data))
 
 #Delete request for removing a course, must be an instructor or aborts
