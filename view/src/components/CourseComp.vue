@@ -22,10 +22,10 @@ export default {
     enter() {
       if (this.action == "Join") {
         axios.post("/course/" + this.course.id + "/join").then(() => {
-          this.$router.push("/course/" + this.course.id);
+          this.$router.push("/course/" + this.course.id + "/");
         });
       } else {
-        this.$router.push("/course/" + this.course.id);
+        this.$router.push("/course/" + this.course.id + "/");
       }
     },
   },
