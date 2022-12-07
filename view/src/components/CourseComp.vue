@@ -2,7 +2,7 @@
   <div class="course">
     <div class="info">
       <h2>{{ course.name }}</h2>
-      <h4>{{ course.instructors.values[0] }}</h4>
+      <h4>{{ course.instructors[0].name }}</h4>
     </div>
     <div class="link">
       <a @click="enter">{{ course.action }}</a>
