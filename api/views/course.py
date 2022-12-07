@@ -3,7 +3,7 @@ from flask import Blueprint, request, abort
 from database.chat import create_chat, list_chat
 from database.course import create_course, is_member, read_course, update_course, delete_course, list_course, enroll_student, courses_by_enrollment, courses_can_enroll, is_instructor
 from database.questions import create_question, read_question, read_question_course, update_question, delete_question, list_question
-from views.account import get_user_by_token
+from database.account import get_user_by_token, get_user_by_id
 
 course = Blueprint("course", __name__)
 
@@ -110,4 +110,13 @@ def get_courses_user_joinable():
     token = request.cookies.get("auth")
     user:dict = get_user_by_token(token)
     user_id = user.get("id")
-    return json.dumps(courses_can_enroll(user_id))
+    result:list[dict] = courses_can_enroll(user_id)
+    reformed:list = []
+    for course in result:
+        instructor_list = course.get("instructors")
+        new_instructors = []
+        for user_id in instructor_list:
+            new_instructors.append({"id":user_id,"name":get_user_by_id(user_id).get("name")})
+        reformated = {"instructors":new_instructors,"name":course.get("name"),"description":course.get("description"),"id":course.get("id")}
+        reformed.append(reformated)
+    return json.dumps(reformed)

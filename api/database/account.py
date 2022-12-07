@@ -29,3 +29,6 @@ def delete_token(token):
     hashed = hashlib.sha256(token.encode()).hexdigest()
     db["accounts"].update_one({'token': hashed}, { '$pull': { 'token': hashed } })
 
+def get_user_by_id(user_id):
+    result = db["accounts"].find_one({'id':user_id},{"_id": 0, "username": 1, "name": 1, "id": 1})
+    return result
