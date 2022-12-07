@@ -1,8 +1,8 @@
 <template>
   <nav>
-    <router-link to="/questions">Questions</router-link>|
-    <router-link to="/chat">Chat</router-link>|
-    <router-link to="/grades">Gradebook</router-link>|
+    <router-link to="questions">Questions</router-link>|
+    <router-link to="chat">Chat</router-link>|
+    <router-link to="grades">Gradebook</router-link>|
   </nav>
 </template>
 

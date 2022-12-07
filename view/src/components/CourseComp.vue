@@ -23,11 +23,11 @@ export default {
       if (this.action == "Join") {
         axios.post("/course/" + this.course.id + "/join").then(() => {
           console.log("CourseComp() => enter() => if{...}");
-          this.$router.push("/course/" + this.course.id);
+          this.$router.push("/course/" + this.course.id + "/");
         });
       } else {
         console.log("CourseComp() => enter() => else{...}");
-        this.$router.push("/course/" + this.course.id);
+        this.$router.push("/course/" + this.course.id + "/");
       }
     },
   },
