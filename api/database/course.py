@@ -53,7 +53,7 @@ def is_enrolled(student_id,course_id):
 
 def is_instructor(user_id, course_id):
     result:dict = db["courses"].find_one({'id':course_id})
-    return user_id in result.get("instructors").values()
+    return str(user_id) in result.get("instructors").keys()
 
 def is_member(user_id, course_id):
     return is_enrolled(user_id, course_id) or is_instructor(user_id, course_id)
