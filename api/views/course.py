@@ -25,7 +25,7 @@ def post_course_route_join(id):
     user_id = user.get("id")
     if(is_instructor(user_id,course_id)):
         abort(400)
-    return json.dumps(enroll_student(user_id,course_id)) , 201
+    return "success" , 201
 
 #Get request for recieving a single course given an id
 @course.route("/<int:id>", methods=["GET"])
