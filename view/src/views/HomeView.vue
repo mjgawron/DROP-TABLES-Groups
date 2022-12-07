@@ -1,18 +1,68 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <MenuBar :name="name" />
+    <div class="container">
+      <CourseList :courses="courses" />
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+/* eslint-disable */
+import axios from "axios";
+import MenuBar from "../components/MenuBar.vue";
+import CourseList from "../components/CourseList.vue";
 
 export default {
   name: "HomeView",
+  data() {
+    return {
+      name: "",
+      courses: []
+    }
+  },
   components: {
-    HelloWorld,
+    MenuBar,
+    CourseList,
+  },
+  beforeMount() {
+    axios.get("/api/course")
+      .then((response) => {
+        this.courses = response.data
+      })
+      .catch(() => { 
+        console.log("HomeView.vue => beforeMount() => catch ERROR")
+    });
+    axios.get("/account/status")
+      .then((response) => {
+        this.name = response.data.name
+      })
+      .catch(() => {
+        console.log("HomeView.vue => beforeMount() => catch ERROR")
+    });
   },
 };
 </script>
+
+<style scoped>
+.home {
+  display: inline-flex;
+  flex-direction: column;
+  color: white;
+  background-color: black;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 95%;
+}
+.container {
+  display: inline-flex;
+  flex-direction: column;
+  color: white;
+  background-color: lightslategray;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  width: 100%;
+}
+</style>

@@ -12,7 +12,6 @@
 
 <script>
 import axios from "axios";
-
 export default {
   name: "CourseComp",
   props: {
@@ -22,9 +21,11 @@ export default {
     enter() {
       if (this.action == "Join") {
         axios.post("/course/" + this.course.id + "/join").then(() => {
+          console.log("CourseComp() => enter() => if{...}");
           this.$router.push("/course/" + this.id);
         });
       } else {
+        console.log("CourseComp() => enter() => else{...}");
         this.$router.push("/course/" + this.id);
       }
     },
