@@ -18,11 +18,13 @@ def post_course_route():
 
 #Post request for adding a user to the enrolled students array inside a course collection
 @course.route("/<int:id>/join",methods=["POST"])
-def post_course_route_join():
+def post_course_route_join(id):
     course_id = id
     token = request.cooksies.get("auth")
     user:dict = get_user_by_token(token)
     user_id = user.get("id")
+    if(is_instructor(user_id,course_id)):
+        abort(400)
     return json.dumps(enroll_student(user_id,course_id)) , 201
 
 #Get request for recieving a single course given an id
@@ -82,9 +84,9 @@ def get_courses_user():
     user:dict = get_user_by_token(token)
     user_id = user.get("id")    
     
-    courses_as_student = set(courses_by_enrollment(user_id))
-    courses_as_instructor = set(courses_by_ownership(user_id))
-    courses_by_attatchment =  courses_as_student.union(courses_as_instructor)
+    courses_as_student = courses_by_enrollment(user_id)
+    courses_as_instructor = courses_by_ownership(user_id)
+    courses_by_attatchment = courses_as_student + courses_as_instructor
     
     return json.dumps(list(courses_by_attatchment))
 
