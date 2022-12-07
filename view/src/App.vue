@@ -7,11 +7,14 @@
   </nav>
   <router-view />
   <br />
-  <!-- <CourseTabs />
+  <CourseTabs />
   <CourseView />
   <QuestionTab />
   <QuestionList />
-  <QuestionComp /> -->
+  <QuestionComp />
+  <GradeComp />
+  <GradeList />
+  <GradeView />
 </template>
 
 <script>
@@ -22,6 +25,9 @@ import CourseView from "./views/CourseView.vue";
 import QuestionTab from "./components/QuestionTab.vue";
 import QuestionComp from "./components/QuestionComp.vue";
 import QuestionList from "./components/QuestionList.vue";
+import GradeComp from "./components/GradeComp.vue";
+import GradeList from "./components/GradeList.vue";
+import GradeView from "./views/GradeView.vue";
 
 export default {
   name: "App",
@@ -31,6 +37,8 @@ export default {
     QuestionList,
     QuestionComp,
     QuestionTab,
+    GradeComp,
+    GradeList,
   },
   methods: {
     logout() {
