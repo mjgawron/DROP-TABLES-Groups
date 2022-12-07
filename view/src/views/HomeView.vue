@@ -60,8 +60,6 @@ export default {
   flex-direction: column;
   color: white;
   background-color: lightslategray;
-  justify-content: space-between;
-  align-items: center;
   margin-bottom: 10px;
   width: 100%;
 }
