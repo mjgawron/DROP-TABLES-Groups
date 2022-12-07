@@ -47,7 +47,7 @@ def put_course_route(id):
     # check user is an instructor
     if not is_instructor(user.get("id"),id):
         abort(400)
-    save_data = {"name":data["name"],"description":data["description"],"instructors":[str(user.get("id"))]}
+    save_data = {"name":data["name"],"description":data["description"],"instructors":user.get("id")}
     return json.dumps(update_course(id, save_data))
 
 #Delete request for removing a course, must be an instructor or aborts
@@ -100,7 +100,8 @@ def post_courses_chat(id):
     if is_member(user_id, id):
         data = request.json
         save_data = {"message": data["message"], "course_id": id, "user": user["name"]}
-        return create_chat(save_data)
+        create_chat(save_data)
+        return "success"
     return "error", 400
     
 #Get request for /api/course/user/joinable, gets user id from auth token and gets all courses they aren't enrolled in

@@ -39,7 +39,7 @@ def unenroll_student(student_id,course_id):
 #returns all the courses the student_id is in 
 def courses_by_enrollment(student_id):
     result = db["courses"].find({'students':student_id})
-    return result
+    return list(result)
 
 #returns all the courses the instructor_id is an instructor for
 def courses_by_ownership(instructor_id):
@@ -50,7 +50,7 @@ def courses_by_ownership(instructor_id):
 
 #returns all the courses the student_id is not in
 def courses_can_enroll(student_id):
-    result = db["courses"].find({'students':{'$ne':student_id}})
+    result = db["courses"].find({'students':{'$ne':student_id}}, {"_id": 0, "deleted": 0})
     return list(result)
 
 #given a student_id and a course_id returns a true/false if that student is currently enrolled in that course

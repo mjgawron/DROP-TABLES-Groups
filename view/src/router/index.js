@@ -1,18 +1,23 @@
 import { createRouter, createWebHistory } from "vue-router";
-import HomeView from "../views/HomeView.vue";
 import axios from "axios";
-
+/* eslint-disable */
 const routes = [
   {
     path: "/",
     name: "home",
-    component: HomeView,
+    component: function () {
+      return import(
+        /* webpackChunkName: "home" */ "../views/HomeView.vue"
+        );
+    },
   },
   {
     path: "/login",
     name: "login",
     component: function () {
-      return import(/* webpackChunkName: "login" */ "../views/LoginView.vue");
+      return import(
+        /* webpackChunkName: "login" */ "../views/LoginView.vue"
+        );
     },
   },
   {
@@ -25,11 +30,20 @@ const routes = [
     },
   },
   {
-    path: "/course-create",
+    path: "/create",
     name: "createcourse",
     component: function () {
       return import(
         /* webpackChunkName: "createcourse" */ "../views/CreateCourse.vue"
+      );
+    },
+  },
+  {
+    path: "/join",
+    name: "joincourse",
+    component: function () {
+      return import(
+        /* webpackChunkName: "joincourse" */ "../views/JoinView.vue"
       );
     },
   },
