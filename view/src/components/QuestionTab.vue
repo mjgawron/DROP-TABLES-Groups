@@ -21,14 +21,14 @@ export default {
   },
   data() {
     return {
-      questions: [],
+      questions: [{},{},{},{}],
     };
   },
   methods: {},
   beforeMount() {
     axios.get("/question").then((response) => {
-      // recieve a list of questions
-      this.questions = [{},{},{},{}]
+      // // recieve a list of questions
+      // this.questions = [{},{},{},{}]
     });
   },
 };

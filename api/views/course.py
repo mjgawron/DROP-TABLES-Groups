@@ -1,7 +1,7 @@
 import json
 from flask import Blueprint, request, abort
 from database.chat import create_chat, list_chat
-from database.course import create_course, is_member, read_course, update_course, delete_course, list_course, enroll_student, courses_by_enrollment, courses_can_enroll, is_instructor
+from database.course import create_course, is_member, read_course, update_course, delete_course, list_course, enroll_student, courses_by_enrollment, courses_can_enroll, is_instructor, courses_by_ownership
 from database.questions import create_question, read_question, read_question_course, update_question, delete_question, list_question
 from database.account import get_user_by_token, get_user_by_id
 
@@ -23,8 +23,7 @@ def post_course_route_join(id):
     token = request.cookies.get("auth")
     user:dict = get_user_by_token(token)
     user_id = user.get("id")
-    enroll_student(user_id,course_id)
-    return "success" , 201
+    return json.dumps(enroll_student(user_id,course_id)) , 201
 
 #Get request for recieving a single course given an id
 @course.route("/<int:id>", methods=["GET"])
@@ -76,22 +75,17 @@ def get_course():
 def get_course_detail_question_route(id):
     return json.dumps(read_question_course(id))
 
-#Get request for /api/course/user, gets user id from auth token and gets all courses they are enrolled in
+#Get request for /api/course/member, gets user id from auth token and gets all courses they are enrolled in
 @course.route("/member",methods=["GET"])
 def get_courses_user():
     token = request.cookies.get("auth")
     user:dict = get_user_by_token(token)
-    user_id = user.get("id")
-    result = courses_by_enrollment(user_id)
-    reformed:list = []
-    for course in result:
-        instructor_list = course.get("instructors")
-        new_instructors = []
-        for user_id in instructor_list:
-            new_instructors.append({"id":user_id,"name":get_user_by_id(user_id).get("name")})
-        reformated = {"instructors":new_instructors,"name":course.get("name"),"description":course.get("description"),"id":course.get("id")}
-        reformed.append(reformated)
-    return json.dumps(reformed)
+    user_id = user.get("id")    
+    
+    courses_as_student = courses_by_enrollment(user_id)
+    courses_as_instructor = courses_by_ownership(user_id)
+    courses_by_attatchment =  courses_as_student + courses_as_instructor
+    return json.dumps(courses_by_attatchment)
 
 @course.route("/<int:id>/chat", methods=["GET"])
 def get_courses_chat(id):

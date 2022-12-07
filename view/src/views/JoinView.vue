@@ -18,10 +18,7 @@ export default {
   },
   data() {
     return {
-      courses: [
-        // { courseName: "CSE-312", instructor: "J.Hartloff", action: "Join" },
-        // { courseName: "CSE-370", instructor: "A.Hunt", action: "Join" },
-      ],
+      courses: [],
     };
   },
   beforeMount() {
