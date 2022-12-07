@@ -3,9 +3,13 @@
     <img src="../assets/propellerhat.jpg" alt="jesse" width="50" height="50" />
     <p>Welcome {{ name }}</p>
     <div class="dropdown">
-      <button @click="onToggle">{{ buttonChar }}</button>
-      <router-link to="/join" v-if="toggle">Join|</router-link>
-      <router-link to="/create" v-if="toggle">|Create</router-link>
+      <button @click="onToggle" class="toolbar-button">{{ buttonChar }}</button>
+      <router-link to="/join" v-if="toggle" class="toolbar-button"
+        >Join|</router-link
+      >
+      <router-link to="/create" v-if="toggle" class="toolbar-button"
+        >|Create</router-link
+      >
     </div>
   </div>
 </template>
@@ -52,5 +56,8 @@ export default {
 }
 .dropdown {
   background-color: slategray;
+}
+.toolbar-button {
+  padding: 5px;
 }
 </style>

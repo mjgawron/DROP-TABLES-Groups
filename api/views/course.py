@@ -18,12 +18,13 @@ def post_course_route():
 
 #Post request for adding a user to the enrolled students array inside a course collection
 @course.route("/<int:id>/join",methods=["POST"])
-def post_course_route_join():
+def post_course_route_join(id):
     course_id = id
-    token = request.cooksies.get("auth")
+    token = request.cookies.get("auth")
     user:dict = get_user_by_token(token)
     user_id = user.get("id")
-    return json.dumps(enroll_student(user_id,course_id)) , 201
+    enroll_student(user_id,course_id)
+    return "success" , 201
 
 #Get request for recieving a single course given an id
 @course.route("/<int:id>", methods=["GET"])
@@ -76,12 +77,21 @@ def get_course_detail_question_route(id):
     return json.dumps(read_question_course(id))
 
 #Get request for /api/course/user, gets user id from auth token and gets all courses they are enrolled in
-@course.route("/user",methods=["GET"])
+@course.route("/member",methods=["GET"])
 def get_courses_user():
     token = request.cookies.get("auth")
     user:dict = get_user_by_token(token)
     user_id = user.get("id")
-    return json.dumps(courses_by_enrollment(user_id))
+    result = courses_by_enrollment(user_id)
+    reformed:list = []
+    for course in result:
+        instructor_list = course.get("instructors")
+        new_instructors = []
+        for user_id in instructor_list:
+            new_instructors.append({"id":user_id,"name":get_user_by_id(user_id).get("name")})
+        reformated = {"instructors":new_instructors,"name":course.get("name"),"description":course.get("description"),"id":course.get("id")}
+        reformed.append(reformated)
+    return json.dumps(reformed)
 
 @course.route("/<int:id>/chat", methods=["GET"])
 def get_courses_chat(id):
