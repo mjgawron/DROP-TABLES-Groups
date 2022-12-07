@@ -1,23 +1,27 @@
 <template>
   <div class="tab">
-    <div class="bar"></div>
-    <div class="question">
-      <RouterView></RouterView>
+    <div class="bar">
+      <div class="questions" :key="question.id" v-for="question in questions">
+        <QuestionComp :question="question" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+/* eslint-disable */
 //import axios from "axios";
 
 export default {
-  name: "QuestionsTab",
+  name: "QuestionList",
   data() {
     return {
       questions: [],
     };
   },
-  methods: {},
+  props: {
+    questions: Array,
+  },
 };
 </script>
 

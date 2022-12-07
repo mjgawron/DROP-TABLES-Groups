@@ -7,14 +7,31 @@
   </nav>
   <router-view />
   <br />
+  <!-- <CourseTabs />
+  <CourseView />
+  <QuestionTab />
+  <QuestionList />
+  <QuestionComp /> -->
 </template>
 
 <script>
 /* eslint-disable */
 import axios from "axios";
+import CourseTabs from "./components/CourseTabs.vue";
+import CourseView from "./views/CourseView.vue";
+import QuestionTab from "./components/QuestionTab.vue";
+import QuestionComp from "./components/QuestionComp.vue";
+import QuestionList from "./components/QuestionList.vue";
 
 export default {
   name: "App",
+  components: {
+    CourseView,
+    CourseTabs,
+    QuestionList,
+    QuestionComp,
+    QuestionTab,
+  },
   methods: {
     logout() {
       axios.post("/account/logout").then(() => {

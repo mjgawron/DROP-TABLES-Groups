@@ -59,7 +59,7 @@ const routes = [
         name: "questions",
         component: function () {
           return import(
-            /* webpackChunkName: "questions" */ "../components/QuestionsTab.vue"
+            /* webpackChunkName: "questions" */ "../components/QuestionTab.vue"
           );
         },
         children: [
@@ -68,7 +68,7 @@ const routes = [
             name: "question",
             component: function () {
               return import(
-                /* webpackChunkName: "questions" */ "../components/SingularQuestion.vue"
+                /* webpackChunkName: "questions" */ "../components/QuestionComp.vue"
               );
             },
           },

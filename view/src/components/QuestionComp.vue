@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h3>Question: {{ question_detail }}</h3>
+    <h3>Question:</h3>
+    <p>{{ question_detail }}</p>
     <div class="submissionForm">
       <form @submit="sendChoice">
         <input type="radio" id="radio_a" name="a" v-model="choice" value="a" />
@@ -18,12 +19,12 @@
         <button>Submit Answer</button>
       </form>
     </div>
-
     <div class="timer"></div>
   </div>
 </template>
 
 <script>
+/* eslint-disable */
 import axios from "axios";
 
 export default {
@@ -33,9 +34,6 @@ export default {
       id: 0,
       choice: "",
     };
-  },
-  mounted() {
-    console.log(this);
   },
   methods: {
     sendChoice(e) {
