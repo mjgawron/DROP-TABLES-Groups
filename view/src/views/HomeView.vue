@@ -2,7 +2,7 @@
   <div class="home">
     <MenuBar :name="name" />
     <div class="container">
-      <CourseList :courses="courses" />
+      <CourseList :courses="courses" action="Enter" />
     </div>
   </div>
 </template>
@@ -26,7 +26,7 @@ export default {
     CourseList,
   },
   beforeMount() {
-    axios.get("/api/course")
+    axios.get("/course/member")
       .then((response) => {
         this.courses = response.data
       })

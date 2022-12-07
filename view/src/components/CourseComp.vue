@@ -5,7 +5,7 @@
       <h4>{{ course.instructors[0].name }}</h4>
     </div>
     <div class="link">
-      <a @click="enter">{{ course.action }}</a>
+      <a @click="enter">{{ action }}</a>
     </div>
   </div>
 </template>
@@ -16,6 +16,7 @@ export default {
   name: "CourseComp",
   props: {
     course: Object,
+    action: String,
   },
   methods: {
     enter() {
