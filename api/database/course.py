@@ -38,8 +38,15 @@ def unenroll_student(student_id,course_id):
 
 #returns all the courses the student_id is in 
 def courses_by_enrollment(student_id):
-    result = db["courses"].find({'students':student_id}, {"_id": 0, "deleted": 0})
+    result = db["courses"].find({'students':student_id},{"_id":0,"deleted":0})
     return list(result)
+
+#returns all the courses the instructor_id is an instructor for
+def courses_by_ownership(instructor_id):
+    result = db["courses"].find({'instructors':instructor_id},{"_id":0,"deleted":0})
+    return list(result)
+
+
 
 #returns all the courses the student_id is not in
 def courses_can_enroll(student_id):

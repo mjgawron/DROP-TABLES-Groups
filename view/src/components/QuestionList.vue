@@ -14,11 +14,6 @@
 
 export default {
   name: "QuestionList",
-  data() {
-    return {
-      questions: [],
-    };
-  },
   props: {
     questions: Array,
   },

@@ -2,7 +2,7 @@
   <div class="course">
     <div class="info">
       <h2>{{ course.name }}</h2>
-      <h4>{{ course.instructors[0].name }}</h4>
+      <h4>Instructor: {{ course.instructors[0].name }}</h4>
     </div>
     <div class="link">
       <a @click="enter">{{ action }}</a>
@@ -22,12 +22,10 @@ export default {
     enter() {
       if (this.action == "Join") {
         axios.post("/course/" + this.course.id + "/join").then(() => {
-          console.log("CourseComp() => enter() => if{...}");
-          this.$router.push("/course/" + this.course.id + "/");
+          this.$router.push("/course/" + this.course.id);
         });
       } else {
-        console.log("CourseComp() => enter() => else{...}");
-        this.$router.push("/course/" + this.course.id + "/");
+        this.$router.push("/course/" + this.course.id);
       }
     },
   },
