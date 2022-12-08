@@ -1,4 +1,5 @@
 pymongo
 flask
 flask-sock
+bcrypt
 flask_cors

@@ -1,0 +1,64 @@
+<template>
+  <div>
+    <h3>Question:</h3>
+    <p>{{ question_detail }}</p>
+    <div class="submissionForm">
+      <form @submit="sendChoice">
+        <input type="radio" id="radio_a" name="a" v-model="choice" value="a" />
+        <label for="radio_a">A: {{ answer_a }}</label>
+
+        <input type="radio" id="radio_b" name="b" v-model="choice" value="b" />
+        <label for="radio_b">B: {{ answer_b }}</label>
+
+        <input type="radio" id="radio_c" name="c" v-model="choice" value="c" />
+        <label for="radio_c">C: {{ answer_c }}</label>
+
+        <input type="radio" id="radio_d" name="d" v-model="choice" value="d" />
+        <label for="radio_d">D: {{ answer_d }}</label>
+
+        <button>Submit Answer</button>
+      </form>
+    </div>
+    <div class="timer"></div>
+  </div>
+</template>
+
+<script>
+/* eslint-disable */
+import axios from "axios";
+
+export default {
+  name: "SingularQuestion",
+  data() {
+    return {
+      id: 0,
+      choice: "",
+    };
+  },
+  methods: {
+    sendChoice(e) {
+      e.preventDefault();
+      const submissionData = {
+        id: this.id,
+        choice: this.choice,
+      };
+      axios.post("/submission", submissionData).then(() => {
+        //const data = r.data;
+      });
+    },
+  },
+};
+</script>
+
+<style scoped>
+.submissionForm {
+  display: inline-flex;
+  flex-direction: column;
+  text-align: left;
+}
+form {
+  display: inline-flex;
+  flex-direction: column;
+  text-align: left;
+}
+</style>
