@@ -2,29 +2,28 @@
   <div class="questions">
     <CourseTabs />
     <div class="container">
-      <QuestionList :questions="questions" />
+      <CreateQuestion />
     </div>
   </div>
 </template>
 
 <script>
 // import axios from "axios";
-import CourseTabs from "../components/CourseTabs.vue";
-import QuestionList from "../components/QuestionList.vue";
+import CreateQuestion from "../components/CreateQuestion.vue";
 
 export default {
-  name: "StudentQuestions",
+  name: "InstructorQuestions",
   data() {
     return {
-      questions: [{}, {}, {}, {}],
+      //
     };
   },
   props: {
-    course_id: Number,
+    //
   },
   components: {
     CourseTabs,
-    QuestionList,
+    CreateQuestion,
   },
   //   beforeMount() {
   //     axios.get("/course/" + this.course_id + "/questions").then((response) => {
