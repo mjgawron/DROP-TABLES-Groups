@@ -1,42 +1,32 @@
 <template>
   <div class="grade">
-    <div class="info">
-      <h2>{{ course.name }}</h2>
-      <h4>{{ course.instructors.values[0] }}</h4>
-    </div>
+    <table class="table">
+      <tr>
+        <th>Company</th>
+        <th>Contact</th>
+        <th>Country</th>
+      </tr>
+    </table>
   </div>
 </template>
 
 <script>
 /* eslint-disable */
-import axios from "axios";
-
+//import axios from "axios";
+// grade is an array containing one object
+// once we iterate
 export default {
   name: "GradeComp",
   props: {
-    course: Object,
+    grade: Object,
   },
-  methods: {
-    enter() {
-      if (this.action == "Join") {
-        axios.post("/course/" + this.course.id + "/join").then(() => {
-          this.$router.push("/course/" + this.id);
-        });
-      } else {
-        this.$router.push("/course/" + this.id);
-      }
-    },
-  },
+  methods: {},
 };
 </script>
 
-<!--GET   /api/course             gets all courses-->
-<!--GET   /api/coursse/<id>       gets specific course-->
-<!--POST  /api/course/<id>/join   join specific course-->
-
 <style scoped>
-.course {
-  width: 60%;
+.grade {
+  width: 80%;
   padding: 20px;
   margin: 20px auto;
   border: 2px solid black;
@@ -44,18 +34,7 @@ export default {
   display: flex;
   justify-content: space-between;
 }
-.info {
-  text-align: left;
-}
-.link {
-  text-align: right;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-a {
-  cursor: pointer;
-  color: blue;
-  text-decoration: underline;
+.table {
+
 }
 </style>
