@@ -47,13 +47,7 @@
       />
       <br />
       <label for="time-field">Time (sec): </label>
-      <input
-        type="number"
-        id="time"
-        name="time"
-        v-model="sock.time"
-        required
-      />
+      <input type="number" id="time" name="time" v-model="sock.time" required />
       <!---------------------------------------------->
       <p>Correct Answer:</p>
       <label for="radio_a">A</label>
@@ -101,8 +95,8 @@ export default {
   name: "InstructorQuestionsTab",
   data() {
     return {
-      question: Object,
-      sock: Object,
+      question: new Object(),
+      sock: new Object(),
     };
   },
   prop: {
@@ -119,9 +113,9 @@ export default {
           this.$router.push("/course/" + this.course_id);
         })
         .catch(() => {});
-      sock.action = "start"
-      const socket = new WebSocket('');
-      socket.send(JSON.stringify(sock));
+      this.sock.action = "start";
+      const socket = new WebSocket("");
+      socket.send(JSON.stringify(this.sock));
     },
   },
 };

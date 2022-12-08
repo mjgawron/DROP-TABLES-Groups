@@ -83,6 +83,15 @@ const routes = [
           );
         },
       },
+      {
+        path: "question-instructor",
+        name: "questionInstructor",
+        component: function () {
+          return import(
+            /* webpackChunkName: "questioninstructor" */ "../views/InstructorQuestions.vue"
+          );
+        },
+      },
     ],
   },
 ];

@@ -8,8 +8,9 @@
 </template>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
 import CreateQuestion from "../components/CreateQuestion.vue";
+import CourseTabs from "../components/CourseTabs.vue";
 
 export default {
   name: "InstructorQuestions",
@@ -27,9 +28,9 @@ export default {
   },
   beforeMount() {
     axios.get("/course/" + this.course_id + "/questions").then((response) => {
-      this.questions = response.data
+      this.questions = response.data;
     });
-  }
+  },
 };
 </script>
 

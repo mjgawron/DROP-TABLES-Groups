@@ -4,6 +4,7 @@ from views.course import course
 from views.account import account
 from views.questions import question
 from views.submission import submission
+from views.websockets import websocket_handler
 
 app = Flask(__name__)
 app.config['SOCK_SERVER_OPTIONS'] = {'ping_interval': 25}
@@ -23,12 +24,7 @@ app.register_blueprint(submission,url_prefix="/api/submission")
 
 @sock.route('/api/ws/<int:id>')
 def ws_handler(ws, id):
-    print(id)
-    while True:
-        data = ws.receive()
-        if data == 'close':
-            break
-        ws.send(data)
+    websocket_handler(ws, id)
 
 
 if __name__ == '__main__':
