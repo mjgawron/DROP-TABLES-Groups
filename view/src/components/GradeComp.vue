@@ -4,7 +4,7 @@
     <table class="table">
       <tr class="question_ids">
         <th :key="answer.question_id" v-for="answer in grade.answers">
-          <h3>Q{{ answer.question_id }},</h3>
+          <h4>Q{{ answer.question_id }},</h4>
         </th>
         <th>Tot:</th>
       </tr>

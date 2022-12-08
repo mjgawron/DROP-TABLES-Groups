@@ -83,6 +83,15 @@ const routes = [
           );
         },
       },
+      {
+        path: "grades",
+        name: "grades",
+        component: function () {
+          return import(
+            /* webpackChunkName: "chat" */ "../views/GradeView.vue"
+          );
+        },
+      },
     ],
   },
 ];

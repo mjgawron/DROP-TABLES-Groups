@@ -9,7 +9,6 @@
     <router-view />
     <br />
   </div>
-  <GradeView course_id="2" />
 </template>
 
 <script>

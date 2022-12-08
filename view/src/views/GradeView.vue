@@ -1,6 +1,5 @@
 <template>
   <div class="tabs">
-    <CourseTabs />
     <div class="list">
       <GradeList :grades="grades" />
     </div>
@@ -21,7 +20,7 @@ export default {
       // answers PLURAL     => [{q_id:<num>,answer:"t/f/x", ...}, ...]
       // grade   NON PLURAL => {student_id: <num>, answers:[{q_id:<num>,answer:"t/f/x", ...}, ...]}
       // grades  PLURAL     => [{student_id: <num>, answers:[{q_id:<num>,answer:"t/f/x", ...}, ...]}, ... ]
-      grades: [{"student_id":10, "answers":[{"question_id":10,"answer":"t"},{"question_id":9,"answer":"t"},{"question_id":8,"answer":"t"},{"question_id":7,"answer":"t"},{"question_id":6,"answer":"t"}]}]
+      grades: [{"student_id":10, "answers":[{"question_id":10,"answer":"t"},{"question_id":9,"answer":"t"},{"question_id":8,"answer":"t"},{"question_id":7,"answer":"t"},{"question_id":6,"answer":"t"}]},{"student_id":10, "answers":[{"question_id":10,"answer":"t"},{"question_id":9,"answer":"t"},{"question_id":8,"answer":"t"},{"question_id":7,"answer":"t"},{"question_id":6,"answer":"t"}]},{"student_id":10, "answers":[{"question_id":10,"answer":"t"},{"question_id":9,"answer":"t"},{"question_id":8,"answer":"t"},{"question_id":7,"answer":"t"},{"question_id":6,"answer":"t"}]},{"student_id":10, "answers":[{"question_id":10,"answer":"t"},{"question_id":9,"answer":"t"},{"question_id":8,"answer":"t"},{"question_id":7,"answer":"t"},{"question_id":6,"answer":"t"}]}]
     }
   },
   props: {
