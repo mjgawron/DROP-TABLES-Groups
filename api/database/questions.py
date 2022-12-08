@@ -14,6 +14,13 @@ def read_question_course(id:int):
     result = db["questions"].find({"deleted":False,"course_id":id},{"_id": 0, "deleted": 0})
     return list(result)
 
+def read_question_ids_course(id):
+    result = read_question_course(id)
+    ret_val = []
+    for elm in result:
+        ret_val.append(elm.get("id"))
+    return ret_val
+
 def update_question(id, data):
     db["questions"].update_one({"id": id}, {"$set": data})
     return read_question(id)
