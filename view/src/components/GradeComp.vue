@@ -7,8 +7,9 @@
         v-for="score in grade.scoreList"
       >
         <!-- but ignore question_id and instead count up Q1, Q2, just used for uniqueness-->
-        <th class trueBox v-if="score.correctness == true">+</th>
-        <th class falseBox v-if="score.correctness == false">-</th>
+        <th class trueBox v-if="score.correctness == 'T'">+</th>
+        <th class falseBox v-if="score.correctness == 'F'">-</th>
+        <th class unansweredBox v-if="score.correctness == 'X'">?</th>
       </tr>
     </table>
   </div>
@@ -24,7 +25,7 @@ export default {
   props: {
     grade: Object,
     //grade looks like {studentID: <num>, scoreList:[], }
-    //scoreList might look like List[ {question_id: True/False }, {question_id: True/False } ] in order of ascending question ids.
+    //scoreList might look like List[ {question_id: 27, correctness : T/F/X },  {question_id: 43, correctness : T/F/X } ] in order of ascending question ids.
   },
   methods: {},
 };
@@ -63,4 +64,14 @@ export default {
   min-height: 40px;
   margin: 0px;
 }
+
+.unansweredBox{
+  background: #777;
+  max-width: 40px;
+  max-height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  margin: 0px;
+}
+
 </style>
