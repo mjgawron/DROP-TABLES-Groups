@@ -4,12 +4,15 @@
       <tr
         class="tableRow"
         v-bind:key="score.question_id"
-        v-for="score in grade.scoreList"
+        v-for="score in grade.answers"
       >
-        <!-- but ignore question_id and instead count up Q1, Q2, just used for uniqueness-->
+        <th>asd</th>
+        <th>asd</th>
+        <th>asd</th>
+        <!-- but ignore question_id and instead count up Q1, Q2, just used for uniqueness
         <th class trueBox v-if="score.correctness == 'T'">+</th>
         <th class falseBox v-if="score.correctness == 'F'">-</th>
-        <th class unansweredBox v-if="score.correctness == 'X'">?</th>
+        <th class unansweredBox v-if="score.correctness == 'X'">?</th> -->
       </tr>
     </table>
   </div>
@@ -17,17 +20,11 @@
 
 <script>
 /* eslint-disable */
-//import axios from "axios";
-// grade is an array containing one object
-// once we iterate
 export default {
   name: "GradeComp",
   props: {
     grade: Object,
-    //grade looks like {studentID: <num>, scoreList:[], }
-    //scoreList might look like List[ {question_id: 27, correctness : T/F/X },  {question_id: 43, correctness : T/F/X } ] in order of ascending question ids.
   },
-  methods: {},
 };
 </script>
 

@@ -28,12 +28,15 @@
 import axios from "axios";
 
 export default {
-  name: "SingularQuestion",
+  name: "QuestionComp",
   data() {
     return {
       id: 0,
       choice: "",
     };
+  },
+  props: {
+    question: Object,
   },
   methods: {
     sendChoice(e) {

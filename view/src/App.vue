@@ -8,26 +8,19 @@
     </nav>
     <router-view />
     <br />
-    <GradeComp />
-    <GradeList />
   </div>
+  <GradeView course_id="2" />
 </template>
 
 <script>
 /* eslint-disable */
 import axios from "axios";
-import CourseTabs from "./components/CourseTabs.vue";
-import CourseView from "./views/CourseView.vue";
-import GradeComp from "./components/GradeComp.vue";
-import GradeList from "./components/GradeList.vue";
+import GradeView from "./views/GradeView.vue";
 
 export default {
   name: "App",
   components: {
-    CourseView,
-    CourseTabs,
-    GradeComp,
-    GradeList,
+    GradeView,
   },
   data() {
     return {
