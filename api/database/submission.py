@@ -18,11 +18,16 @@ def create_submission(data):
     
     correct = student_choice == correct_choice
 
+    if(not question.get("enabled")):
+        return None
+
+
     save_data = {"course_id":course_id,"question_id":question_id,"user_id":user_id,"user_name":user.get("name"),"correct":correct}
     
 
     internal_data = {**save_data,"id":id, "deleted":False}
     db["submissions"].insert_one(internal_data)
+    
     return read_submission(id)
 
 def read_submission(submission_id):

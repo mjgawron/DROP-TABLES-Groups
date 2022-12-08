@@ -16,7 +16,7 @@ def post_question_route():
     if ( not _verify_instructor(token,course_id)):
         abort(400)
     
-    save_data = {"course_id":course_id,"question_detail":data["question_detail"],"answer_a":data["answer_a"],"answer_b":data["answer_b"],"answer_c":data["answer_c"],"answer_d":data["answer_d"],"answer":data["answer"]}
+    save_data = {"course_id":course_id,"question_detail":data["question_detail"],"answer_a":data["answer_a"],"answer_b":data["answer_b"],"answer_c":data["answer_c"],"answer_d":data["answer_d"],"answer":data["answer"],"enabled":False}
     return json.dumps(create_question(save_data)), 201
 
 @question.route("/<int:id>", methods=["GET"])
