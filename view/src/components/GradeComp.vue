@@ -1,16 +1,20 @@
 <template>
   <div class="grade">
-    <h2>{{ grade.student_id }}</h2>
+    <h3>SID # {{ grade.student_id }}</h3>
     <table class="table">
-      <tr
-        class="tableRow"
-        v-bind:key="answer.question_id"
-        v-for="answer in grade.answers"
-      >
-        <p>{{ answer.key }}</p>
-        <th class trueBox v-if="score.correctness == 'T'">+</th>
-        <th class falseBox v-if="score.correctness == 'F'">-</th>
-        <th class unansweredBox v-if="score.correctness == 'X'">?</th>
+      <tr class="question_ids">
+        <th :key="answer.question_id" v-for="answer in grade.answers">
+          <h3>Q{{ answer.question_id }},</h3>
+        </th>
+        <th>Tot:</th>
+      </tr>
+      <tr class="answers">
+        <td :key="answer.question_id" v-for="answer in grade.answers">
+          {{ answer.answer }}
+        </td>
+        <td>
+          {{ total }}
+        </td>
       </tr>
     </table>
   </div>
@@ -20,8 +24,18 @@
 /* eslint-disable */
 export default {
   name: "GradeComp",
+  data() {
+    return {
+      total: 0,
+    }
+  },
   props: {
     grade: Object,
+  },
+  methods: {
+    total() {
+      this.total = 12;
+    },
   },
 };
 </script>
@@ -39,34 +53,4 @@ export default {
 .table {
 
 }
-
-.tableRow{
-
-}
-
-.truebox{
-  background: #0e0;
-  max-height: 40px;
-  max-width: 40px;
-  min-height: 40px;
-  margin: 0px;
-}
-.falseBox{
-  background: #e00;
-  max-width: 40px;
-  max-height: 40px;
-  min-width: 40px;
-  min-height: 40px;
-  margin: 0px;
-}
-
-.unansweredBox{
-  background: #777;
-  max-width: 40px;
-  max-height: 40px;
-  min-width: 40px;
-  min-height: 40px;
-  margin: 0px;
-}
-
 </style>

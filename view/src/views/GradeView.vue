@@ -17,11 +17,11 @@ export default {
   name: "GradeView",
   data() {
     return {
-      // answer NON PLURAL  => {q_id:"t/f/x", ...}
-      // answers PLURAL     => [{q_id:"t/f/x", ...}, ...]
-      // grade   NON PLURAL => {student_id: <num>, answers:[{q_id:"t/f/x"}, ...]}
-      // grades  PLURAL     => [{student_id: <num>, answers:[{q_id:"t/f/x"},...]}, ... ]
-      grades: [{"student_id":10, "answers":[{}]}]
+      // answer NON PLURAL  => {q_id:<num>,answer:"t/f/x", ...}
+      // answers PLURAL     => [{q_id:<num>,answer:"t/f/x", ...}, ...]
+      // grade   NON PLURAL => {student_id: <num>, answers:[{q_id:<num>,answer:"t/f/x", ...}, ...]}
+      // grades  PLURAL     => [{student_id: <num>, answers:[{q_id:<num>,answer:"t/f/x", ...}, ...]}, ... ]
+      grades: [{"student_id":10, "answers":[{"question_id":10,"answer":"t"},{"question_id":9,"answer":"t"},{"question_id":8,"answer":"t"},{"question_id":7,"answer":"t"},{"question_id":6,"answer":"t"}]}]
     }
   },
   props: {
