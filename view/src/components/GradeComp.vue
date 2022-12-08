@@ -1,10 +1,14 @@
 <template>
   <div class="grade">
     <table class="table">
-      <tr>
-        <th>Company</th>
-        <th>Contact</th>
-        <th>Country</th>
+      <tr
+        class="tableRow"
+        v-bind:key="score.question_id"
+        v-for="score in grade.scoreList"
+      >
+        <!-- but ignore question_id and instead count up Q1, Q2, just used for uniqueness-->
+        <th v-if="score.correctness == true">+</th>
+        <th v-if="score.correctness == false">-</th>
       </tr>
     </table>
   </div>
@@ -35,6 +39,10 @@ export default {
   justify-content: space-between;
 }
 .table {
+
+}
+
+.tableRow{
 
 }
 </style>

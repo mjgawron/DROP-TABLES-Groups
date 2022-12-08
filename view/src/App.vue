@@ -1,14 +1,16 @@
 <template>
-  <nav class="mainmenu">
-    <router-link to="/">Home</router-link>
-    <router-link v-if="!loggedIn" to="/login">Login</router-link>
-    <router-link v-if="!loggedIn" to="/register">Register</router-link>
-    <a @click="logout" v-if="loggedIn">Logout</a>
-  </nav>
-  <router-view />
-  <br />
-  <GradeComp />
-  <GradeList />
+  <div>
+    <nav class="mainmenu">
+      <router-link to="/">Home</router-link>
+      <router-link v-if="!loggedIn" to="/login">Login</router-link>
+      <router-link v-if="!loggedIn" to="/register">Register</router-link>
+      <a @click="logout" v-if="loggedIn">Logout</a>
+    </nav>
+    <router-view />
+    <br />
+    <GradeComp />
+    <GradeList />
+  </div>
 </template>
 
 <script>
