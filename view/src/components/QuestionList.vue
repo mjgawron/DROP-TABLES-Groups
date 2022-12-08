@@ -10,7 +10,6 @@
 
 <script>
 /* eslint-disable */
-//import axios from "axios";
 import QuestionComp from "../components/QuestionComp.vue";
 
 export default {

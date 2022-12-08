@@ -45,6 +45,15 @@
         v-model="question.answer_d"
         required
       />
+      <br />
+      <label for="time-field">Time (sec): </label>
+      <input
+        type="number"
+        id="time"
+        name="time"
+        v-model="sock.time"
+        required
+      />
       <!---------------------------------------------->
       <p>Correct Answer:</p>
       <label for="radio_a">A</label>
@@ -87,11 +96,13 @@
 
 <script>
 import axios from "axios";
+
 export default {
   name: "InstructorQuestionsTab",
   data() {
     return {
       question: Object,
+      sock: Object,
     };
   },
   prop: {
@@ -105,9 +116,12 @@ export default {
       axios
         .post("/question", this.question)
         .then(() => {
-          this.$router.push("/");
+          this.$router.push("/course/" + this.course_id);
         })
         .catch(() => {});
+      sock.action = "start"
+      const socket = new WebSocket('');
+      socket.send(JSON.stringify(sock));
     },
   },
 };

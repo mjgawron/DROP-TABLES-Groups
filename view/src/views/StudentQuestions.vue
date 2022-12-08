@@ -16,7 +16,7 @@ export default {
   name: "StudentQuestions",
   data() {
     return {
-      questions: [{}, {}, {}, {}],
+      questions: [{}],
     };
   },
   props: {

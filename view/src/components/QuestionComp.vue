@@ -51,7 +51,9 @@
         <button>Submit Answer</button>
       </form>
     </div>
-    <div class="timer"></div>
+    <div class="timer">
+      {{ timeRemaining }}
+    </div>
   </div>
 </template>
 
@@ -65,6 +67,7 @@ export default {
     return {
       id: 0,
       choice: "",
+      timeRemaining: 0,
     };
   },
   props: {
@@ -76,11 +79,22 @@ export default {
       const submissionData = {
         id: this.id,
         choice: this.choice,
+        action: "submit",
       };
-      axios.post("/submission", submissionData).then(() => {
-        //const data = r.data;
-      });
+      this.socket.send(submissionData);
     },
+  },
+  mounted() {
+    this.socket = new WebSocket('');
+    this.socket.onmessage = (ws_message) => {
+      const message = JSON.parse(ws_message.data);
+      const messageType = message.action;
+
+      switch (messageType) {
+        case 'timer':
+          this.timeRemaining = message.timeRemaining
+      }
+    }
   },
 };
 </script>
