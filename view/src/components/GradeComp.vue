@@ -1,18 +1,16 @@
 <template>
   <div class="grade">
+    <h2>{{ grade.student_id }}</h2>
     <table class="table">
       <tr
         class="tableRow"
-        v-bind:key="score.question_id"
-        v-for="score in grade.answers"
+        v-bind:key="answer.question_id"
+        v-for="answer in grade.answers"
       >
-        <th>asd</th>
-        <th>asd</th>
-        <th>asd</th>
-        <!-- but ignore question_id and instead count up Q1, Q2, just used for uniqueness
+        <p>{{ answer.key }}</p>
         <th class trueBox v-if="score.correctness == 'T'">+</th>
         <th class falseBox v-if="score.correctness == 'F'">-</th>
-        <th class unansweredBox v-if="score.correctness == 'X'">?</th> -->
+        <th class unansweredBox v-if="score.correctness == 'X'">?</th>
       </tr>
     </table>
   </div>
