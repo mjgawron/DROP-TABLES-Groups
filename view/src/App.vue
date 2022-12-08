@@ -7,20 +7,15 @@
       <a @click="logout" v-if="loggedIn">Logout</a>
     </nav>
     <router-view />
-    <br />
   </div>
 </template>
 
 <script>
 /* eslint-disable */
 import axios from "axios";
-import GradeView from "./views/GradeView.vue";
 
 export default {
   name: "App",
-  components: {
-    GradeView,
-  },
   data() {
     return {
       loggedIn: false,
