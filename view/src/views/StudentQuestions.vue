@@ -17,6 +17,7 @@ export default {
   data() {
     return {
       // questions: [{}],
+      id: "",
     };
   },
   props: {
@@ -27,6 +28,7 @@ export default {
     QuestionList,
   },
   beforeMount() {
+    this.id = this.$router.currentRoute.value.params.course_id;
     axios.get("/course/" + this.course_id + "/questions").then((response) => {
       this.questions = response.data
     });

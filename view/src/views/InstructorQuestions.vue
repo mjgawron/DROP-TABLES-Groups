@@ -2,7 +2,7 @@
   <div class="questions">
     <CourseTabs />
     <div class="container">
-      <CreateQuestion />
+      <CreateQuestion :course_id="id" />
     </div>
   </div>
 </template>
@@ -16,7 +16,7 @@ export default {
   name: "InstructorQuestions",
   data() {
     return {
-      //
+      id: "",
     };
   },
   props: {
@@ -27,6 +27,7 @@ export default {
     CreateQuestion,
   },
   beforeMount() {
+    this.id = this.$router.currentRoute.value.params.course_id;
     axios.get("/course/" + this.course_id + "/questions").then((response) => {
       this.questions = response.data;
     });

@@ -99,14 +99,14 @@ export default {
       sock: new Object(),
     };
   },
-  prop: {
-    course_id: String,
+  props: {
+    course_id: Number,
   },
   methods: {
     makeQuestion(e) {
       e.preventDefault();
       // set field inside question object to the prop that was passed
-      this.question.course_id = this.course_id;
+      this.question.course_id = Number(this.course_id);
       axios
         .post("/question", this.question)
         .then(() => {
