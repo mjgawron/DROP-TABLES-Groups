@@ -16,7 +16,7 @@ export default {
   name: "StudentQuestions",
   data() {
     return {
-      questions: [{}],
+      // questions: [{}],
     };
   },
   props: {
@@ -26,11 +26,11 @@ export default {
     CourseTabs,
     QuestionList,
   },
-  //   beforeMount() {
-  //     axios.get("/course/" + this.course_id + "/questions").then((response) => {
-  //       this.questions = response.data
-  //     });
-  //   }
+  beforeMount() {
+    axios.get("/course/" + this.course_id + "/questions").then((response) => {
+      this.questions = response.data
+    });
+  }
 };
 </script>
 

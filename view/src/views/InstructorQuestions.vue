@@ -25,11 +25,11 @@ export default {
     CourseTabs,
     CreateQuestion,
   },
-  //   beforeMount() {
-  //     axios.get("/course/" + this.course_id + "/questions").then((response) => {
-  //       this.questions = response.data
-  //     });
-  //   }
+  beforeMount() {
+    axios.get("/course/" + this.course_id + "/questions").then((response) => {
+      this.questions = response.data
+    });
+  }
 };
 </script>
 
