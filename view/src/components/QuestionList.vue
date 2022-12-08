@@ -10,12 +10,15 @@
 
 <script>
 /* eslint-disable */
-//import axios from "axios";
+import QuestionComp from "../components/QuestionComp.vue";
 
 export default {
   name: "QuestionList",
   props: {
     questions: Array,
+  },
+  components: {
+    QuestionComp,
   },
 };
 </script>
