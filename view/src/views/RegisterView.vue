@@ -1,5 +1,8 @@
 <template>
   <div class="register">
+    <div class="image">
+      <img alt="Jesse ballcap" src="../assets/propellerhat.jpg" />
+    </div>
     <span v-if="invalidRegistration" class="error">
       Invalid registration. Please try again.
     </span>
@@ -70,9 +73,15 @@ export default {
 .error {
   color: red;
 }
+.image {
+  justify-content: center;
+}
 form {
   display: inline-flex;
   flex-direction: column;
   text-align: left;
+}
+img {
+  width: 200px;
 }
 </style>

@@ -1,5 +1,8 @@
 <template>
   <div class="login">
+    <div class="image">
+      <img alt="Jesse ballcap" src="../assets/propellerhat.jpg" />
+    </div>
     <span v-if="invalidLogin" class="error">
       Unable to login. Please try again.
     </span>
@@ -66,9 +69,15 @@ export default {
 .error {
   color: red;
 }
+.image {
+  justify-content: center;
+}
 form {
   display: inline-flex;
   flex-direction: column;
   text-align: left;
+}
+img {
+  width: 200px;
 }
 </style>
