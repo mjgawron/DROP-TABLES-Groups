@@ -20,14 +20,14 @@ export default {
   },
   data() {
     return {
-      questions: [{"question_id":10,"question_detail":"asdasdasd"},{"question_id":9,"question_detail":"asdasdasd"}],
+      questions: [],
     };
   },
-  // beforeMount() {
-  //   axios.get("/course/" + this.course_id + "/questions").then((response) => {
-  //     this.questions = response.data;
-  //   });
-  // },
+  beforeMount() {
+    axios.get("/course/" + this.course_id + "/questions").then((response) => {
+      this.questions = response.data;
+    });
+  },
 };
 </script>
 

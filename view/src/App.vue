@@ -8,7 +8,6 @@
     </nav>
     <router-view />
   </div>
-  <QuestionTab :isInstructor="true" />
 </template>
 
 <script>
