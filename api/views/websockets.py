@@ -40,7 +40,7 @@ def leave_room(room, connection):
 
 def timer(starting_second, room):
     for rem in range(starting_second, -1, -1):
-        broadcast(room, json.dumps({"timeRemaining": rem}))
+        broadcast(room, json.dumps({"action": "timer", "timeRemaining": rem}))
         sleep(1)
     
 

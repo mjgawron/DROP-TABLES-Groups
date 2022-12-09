@@ -52,7 +52,7 @@
       </form>
     </div>
     <div class="timer">
-      {{ timeRemaining }}
+      Time Remaining: {{ timeRemaining }}
     </div>
   </div>
 </template>
@@ -70,14 +70,12 @@ export default {
     };
   },
   props: {
-    question: new Object(),
-    course_id: String,
+    question: Object(),
   },
   methods: {
     sendChoice(e) {
       e.preventDefault();
       const submissionData = {
-        // id: this.id,
         choice: this.choice,
         action: "submit",
       };
@@ -87,7 +85,7 @@ export default {
   mounted() {
 
     this.socket = new WebSocket(
-      'ws://' + window.location.host + '/api/ws/' + this.course_id
+      'ws://' + window.location.host + '/api/ws/' + this.question.id
       );
     this.socket.onmessage = (ws_message) => {
       const message = JSON.parse(ws_message.data);
@@ -95,7 +93,7 @@ export default {
 
       switch (messageType) {
         case 'timer':
-          this.timeRemaining = message.timeRemaining
+          this.timeRemaining = message.timeRemaining;
       }
     }
   },

@@ -2,7 +2,7 @@
   <div class="tab">
     <div class="bar">
       <div class="questions" :key="question.id" v-for="question in questions">
-        <QuestionComp :question="question" :course_id="course_id" />
+        <QuestionComp :question="question" />
       </div>
     </div>
   </div>
@@ -16,7 +16,6 @@ export default {
   name: "QuestionList",
   props: {
     questions: Array,
-    course_id: String,
   },
   components: {
     QuestionComp,
