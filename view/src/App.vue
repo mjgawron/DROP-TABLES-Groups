@@ -4,7 +4,7 @@
       <router-link to="/">Home</router-link>
       <router-link v-if="!loggedIn" to="/login">Login</router-link>
       <router-link v-if="!loggedIn" to="/register">Register</router-link>
-      <a @click="logout" v-if="loggedIn">Logout</a>
+      <a href="" @click="logout" v-if="loggedIn">Logout</a>
     </nav>
     <div class="main">
       <router-view />
