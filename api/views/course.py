@@ -2,7 +2,7 @@ import json
 from flask import Blueprint, request, abort
 from database.chat import create_chat, list_chat
 from database.course import create_course, is_member, read_course, update_course, delete_course, list_course, enroll_student, courses_by_enrollment, courses_can_enroll, is_instructor, courses_by_ownership
-from database.questions import create_question, read_question, read_question_course, update_question, delete_question, list_question
+from database.questions import create_question, read_question, read_question_course, update_question, delete_question, list_question, safe_read_questions_course
 from database.account import get_user_by_token, get_user_by_id
 
 course = Blueprint("course", __name__)
@@ -76,7 +76,7 @@ def get_course():
 #Get request for /api/course/course_id/questions gets all questions for that course
 @course.route("/<int:id>/questions",methods=["GET"])
 def get_course_detail_question_route(id):
-    return json.dumps(read_question_course(id))
+    return json.dumps(safe_read_questions_course(id))
 
 #Get request for /api/course/member, gets user id from auth token and gets all courses they are enrolled in
 @course.route("/member",methods=["GET"])

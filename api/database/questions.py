@@ -14,6 +14,10 @@ def read_question_course(id:int):
     result = db["questions"].find({"deleted":False,"course_id":id},{"_id": 0, "deleted": 0})
     return list(result)
 
+def safe_read_questions_course(id:int):
+    result = db["questions"].find({"deleted":False,"course_id":id},{"_id":0,"deleted":0,"answer":0,"enabled":0})
+    return list(result)
+
 def read_question_ids_course(id):
     result = read_question_course(id)
     ret_val = []
