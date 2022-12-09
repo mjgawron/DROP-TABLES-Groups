@@ -17,15 +17,17 @@ import axios from "axios";
 export default {
   name: "App",
   data() {
-    return {
-      loggedIn: false,
-    };
+    return {};
+  },
+  computed: {
+    loggedIn() {
+      return this.$route.name != "login" && this.$route.name != "register"
+    },
   },
   methods: {
     logout() {
       axios.post("/account/logout").then(() => {
         this.$router.push("/login");
-        this.loggedIn = false;
       });
     },
   },
