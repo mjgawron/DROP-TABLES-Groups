@@ -1,11 +1,8 @@
 <template>
-  <div class="course">
+  <div>
     <h1>Course View</h1>
     <CourseTabs />
-    <!--Here we have to figure out how to pass props through the router-view,
-      We will pass isInstructor as a prop to QuestionView.vue, and QuestionView.vue will look
-      at the boolean, and If its true, QuestionView.vue will show InstructorQuestionView.vue
-      and otherwise (false) QuestionView.vue will show StudentQuestionView.vue-->
+    <!--Here we have to pass props through the router into QuestionTab.vue-->
     <RouterView></RouterView>
   </div>
 </template>
@@ -25,29 +22,15 @@ export default {
       isInstructor: false,
     };
   },
+  // NEED TO GET THE COURSE ID, RIGHT NOW ITS THE EMPTY STRING
   beforeMount() {
     // api should return a boolean, true if the user is an instructor, false otherwise
     // if the user is an instructor, QuestionTab should display a list of questions they've created
     // if the user is a student, QuestionTab should open a WebSocket connection, and show questions and live timer.
-    axios.get("/course/" + this.course_id + "/instructor").then((response)=> {
+    axios.get("/course/" + this.course_id + "/instructor").then((response) => {
       this.isInstructor = response.data;
+      // push params/state to the Vue Router Here
     });
   },
 };
 </script>
-
-<style scoped>
-.login {
-  display: inline-flex;
-  flex-direction: column;
-  min-width: 450px;
-}
-.error {
-  color: red;
-}
-form {
-  display: inline-flex;
-  flex-direction: column;
-  text-align: left;
-}
-</style>

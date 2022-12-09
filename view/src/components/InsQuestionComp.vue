@@ -1,9 +1,9 @@
 <template>
-  <!--Simply shows the instructor the question_id and the 
-  description of the question without buttons & WebSockets-->
-  <div class="container">
-    <h4>Question: {{ question.question_id }}</h4>
-    <p>{{ question.question_detail }}</p>
+  <div class="question">
+    <div class="info">
+      <h4>Question: {{ question.question_id }}</h4>
+      <p>{{ question.question_detail }}</p>
+    </div>
   </div>
 </template>
 
@@ -18,13 +18,16 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  width: 80%;
+.question {
+  width: 60%;
   padding: 20px;
   margin: 20px auto;
   border: 2px solid black;
   border-radius: 8px;
   display: flex;
   justify-content: space-between;
+}
+.info {
+  text-align: left;
 }
 </style>
