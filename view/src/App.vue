@@ -6,7 +6,9 @@
       <router-link v-if="!loggedIn" to="/register">Register</router-link>
       <a @click="logout" v-if="loggedIn">Logout</a>
     </nav>
-    <router-view />
+    <div class="main">
+      <router-view />
+    </div>
   </div>
 </template>
 
@@ -61,14 +63,20 @@ nav a.router-link-exact-active {
   color: #42b983;
 }
 .mainmenu {
-  /* position: fixed;
-  top: 0; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   padding: 30px;
   color: white;
   background-color: darkslategray;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
-  width: 95%;
+  width: 100%;
+  box-sizing: border-box;
+}
+.main {
+  margin-top: 120px;
 }
 </style>
