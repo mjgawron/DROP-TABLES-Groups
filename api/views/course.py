@@ -128,7 +128,7 @@ def get_courses_user_joinable():
         reformed.append(reformated)
     return json.dumps(reformed)
 
-@course.route("<int:id>/roster",methods=["GET"])
+@course.route("/<int:id>/roster",methods=["GET"])
 def get_course_roster(id):
     token = request.cookies.get("auth")
     user:dict = get_user_by_token(token)
