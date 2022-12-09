@@ -59,7 +59,7 @@ const routes = [
         name: "questions",
         component: function () {
           return import(
-            /* webpackChunkName: "questions" */ "../components/QuestionTab.vue"
+            /* webpackChunkName: "questions" */ "../views/QuestionTab.vue"
           );
         },
         children: [
