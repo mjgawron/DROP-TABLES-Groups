@@ -89,6 +89,15 @@ const routes = [
         component: function () {
           return import(
             /* webpackChunkName: "questioninstructor" */ "../views/InstructorQuestions.vue"
+          )
+        },
+      },
+      {
+        path: "grades",
+        name: "grades",
+        component: function () {
+          return import(
+            /* webpackChunkName: "chat" */ "../views/GradeView.vue"
           );
         },
       },
