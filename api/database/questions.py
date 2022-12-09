@@ -31,3 +31,14 @@ def delete_question(id):
 def list_question():
     result = db["questions"].find({"deleted": False}, {"_id": 0, "deleted": 0})
     return list(result)
+
+#allows websocket handler to enable question, submissions made will be able to be added to database
+def enable_question(id):
+    enabler = {"enabled":True}
+    return update_question(id,enabler)
+
+#allows websocket handler to disable question, submissions made will be met with a return of None to function call
+def disable_question(id):
+    disabler = {"enabled":False}
+    return update_question(id,disabler)
+
