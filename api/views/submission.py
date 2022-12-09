@@ -28,8 +28,8 @@ def get_course_grades(course_id):
         for student_id in roster:
             score_list = []
 
-            student:dict = get_user_by_id(student)
-            
+            student:dict = get_user_by_id(student_id)
+
 
             for question_id in question_ids:
                 chosen_correctly = False
