@@ -1,7 +1,7 @@
 <template>
   <div class="question">
     <div class="info">
-      <h4>Question #{{ index }}</h4>
+      <h4>Question: #{{ iterator }}</h4>
       <p>{{ question.question_detail }}</p>
     </div>
   </div>
@@ -12,7 +12,7 @@
 export default {
   name: "InsQuestionComp",
   props: {
-    index: Number,
+    iterator: Number,
     question: Object,
   },
 }
