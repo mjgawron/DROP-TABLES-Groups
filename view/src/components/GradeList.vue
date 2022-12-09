@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <div class="head">
-      <h2>{{ message }}</h2>
-    </div>
+  <div class="head">
     <div class="list" :key="grade.student_id" v-for="grade in grades">
       <GradeComp :grade="grade" />
     </div>
@@ -16,10 +13,6 @@ import GradeComp from './GradeComp.vue';
 export default {
   name: "GradeList",
   props: {
-    // answer NON PLURAL  => {q_id:"t/f/x", ...}
-    // answers PLURAL     => [{q_id:"t/f/x", ...}, ...]
-    // grade   NON PLURAL => {student_id: <num>, answers:[{q_id:"t/f/x"}, ...]}
-    // grades  PLURAL     => [{student_id: <num>, answers:[{q_id:"t/f/x"},...]}, ... ]
     grades: Array,
   },
   components: {

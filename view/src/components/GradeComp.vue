@@ -1,6 +1,6 @@
 <template>
   <div class="grade">
-    <h3>SID # {{ grade.student_id }}</h3>
+    <h3>{{ grade.name }}</h3>
     <table class="table">
       <tr class="question_ids">
         <th :key="answer.question_id" v-for="answer in grade.answers">
@@ -13,7 +13,7 @@
           {{ answer.answer }}
         </td>
         <td>
-          {{ total }}
+          {{ score }}
         </td>
       </tr>
     </table>
@@ -26,17 +26,22 @@ export default {
   name: "GradeComp",
   data() {
     return {
-      total: 0,
+      score: 0,
     }
   },
   props: {
     grade: Object,
   },
-  methods: {
-    total() {
-      this.total = 12;
+  beforeMount() {
+      var correct = 0;
+      const numQuestions = this.grade.answers.length;
+      for (let answer of this.grade.answers) {
+        if (answer.answer === "t") {
+          correct += 1;
+        }
+      }
+      this.score = Intl.NumberFormat('default', {style: 'percent', minimumFractionDigits: 2, maximumFractionDigits: 2,}).format((correct / numQuestions));
     },
-  },
 };
 </script>
 
@@ -49,8 +54,5 @@ export default {
   border-radius: 8px;
   display: flex;
   justify-content: space-between;
-}
-.table {
-
 }
 </style>
