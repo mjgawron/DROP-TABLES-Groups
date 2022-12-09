@@ -77,7 +77,7 @@ export default {
         choice: this.choice,
         action: "submit",
       };
-      this.socket.send(submissionData);
+      this.socket.send(JSON.stringify(submissionData));
     },
   },
   mounted() {
