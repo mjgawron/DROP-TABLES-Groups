@@ -25,7 +25,7 @@ export default {
   },
   beforeMount() {
     axios.get("/submission/" + this.$router.currentRoute.value.params.course_id + "/grades").then((response) => {
-      grades = response.data;
+      this.grades = response.data;
     });
   },
 }

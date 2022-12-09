@@ -10,7 +10,7 @@
       </tr>
       <tr class="answers">
         <td :key="score.question_id" v-for="score in grade.score_list">
-          {{ score.correctness }}
+          ({{ score.correctness ? "1" : "0" }}/1)
         </td>
         <td>
           {{ score }}
