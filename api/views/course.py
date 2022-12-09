@@ -141,3 +141,10 @@ def get_course_roster(id):
         student = get_user_by_id(student_id)
         roster.append({"name":student.get("name"),"username":student.get("username")})
     return json.dumps(roster)
+
+@course.route("/<int:id>/instructor",methods=["GET"])
+def instructor_verification(id):
+    user = get_user_by_token(request.cookies.get("auth"))
+    user_id = user.get("id")
+    verify = is_instructor(user_id,id)
+    return(json.dumps(verify))
