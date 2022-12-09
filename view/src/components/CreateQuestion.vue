@@ -92,7 +92,7 @@
 import axios from "axios";
 
 export default {
-  name: "InstructorQuestionsTab",
+  name: "CreateQuestion",
   data() {
     return {
       question: new Object(),
