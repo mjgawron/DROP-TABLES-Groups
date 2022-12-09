@@ -3,7 +3,7 @@
     <div class="bar"></div>
     <div class="question">
       <!-- <RouterView></RouterView> -->
-      <QuestionList :questions="questions" />
+      <QuestionList :questions="questions" :id="id" />
     </div>
   </div>
 </template>
@@ -22,6 +22,7 @@ export default {
   data() {
     return {
       questions: [],
+      id: "",
     };
   },
   methods: {},
