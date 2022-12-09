@@ -12,6 +12,15 @@ const routes = [
     },
   },
   {
+    path: "/account",
+    name: "account",
+    component: function () {
+      return import(
+        /* webpackChunkName: "account" */ "../views/AccountView.vue"
+        );
+    },
+  },
+  {
     path: "/login",
     name: "login",
     component: function () {
@@ -97,7 +106,7 @@ const routes = [
         name: "grades",
         component: function () {
           return import(
-            /* webpackChunkName: "chat" */ "../views/GradeView.vue"
+            /* webpackChunkName: "grade" */ "../views/GradeView.vue"
           );
         },
       },
@@ -106,7 +115,7 @@ const routes = [
         name: "roster",
         component: function () {
           return import(
-            /* webpackChunkName: "chat" */ "../views/RosterView.vue"
+            /* webpackChunkName: "roster" */ "../views/RosterView.vue"
           );
         },
       }

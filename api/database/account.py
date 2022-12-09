@@ -32,3 +32,6 @@ def delete_token(token):
 def get_user_by_id(user_id):
     result = db["accounts"].find_one({'id':user_id},{"_id": 0, "username": 1, "name": 1, "id": 1})
     return result
+
+def edit_user(data,user_id):
+    db["accounts"].update_one({"deleted":False,"id":user_id},{"$set":data})

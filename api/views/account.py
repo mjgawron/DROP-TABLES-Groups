@@ -2,7 +2,7 @@ import json
 import bcrypt
 from flask import Blueprint, make_response, request
 import re
-from database.account import create_account, add_auth_token, get_user_by_username, delete_token, get_user_by_token
+from database.account import create_account, add_auth_token, get_user_by_username, delete_token, get_user_by_token, edit_user
 
 
 account = Blueprint("account", __name__)
@@ -45,7 +45,18 @@ def post_register_route():
     resp.set_cookie("auth", add_auth_token(user_id), max_age=31556952, httponly=True)
     return resp
 
-
+@account.route("/",methods=["PUT"])
+def change_account():
+    token = request.cookies.get("auth")
+    data = request.json
+    if not ("name" in data):
+        return "missing information", 400
+    if len(data["name"]) == 0 or re.fullmatch("[a-zA-Z ]*", data["name"]) is None:
+        return "invalid name", 400
+    user:dict = get_user_by_token(token)
+    user_id = user.get("id")
+    edit_user({"name":data.get("name")},user_id)
+    return "success", 200
 
 @account.route("/logout", methods=["POST"])
 def post_logout_route():
