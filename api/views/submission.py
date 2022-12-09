@@ -17,7 +17,7 @@ def get_course_grades(course_id):
 
     if not is_member(user_id,course_id):
         abort(400)
-        
+
     instructor_status = is_instructor(user_id,course_id)
     course:dict = read_course(course_id)
 
@@ -33,8 +33,8 @@ def get_course_grades(course_id):
                     student_submission:dict = read_submission_student(student_id,question_id)
                     chosen_correctly = student_submission.get("correct")
                 score_list.append({"correctness":chosen_correctly,"question_id":question_id})
-            gradeList.append({"student_id":student_id,"score_list":score_list})
-        return gradeList
+            gradeList.append({"student_id":student_id,"score_list":score_list,"name":user.get("name")})
+        return json.dumps(gradeList)
     
     else:
         student_id = user_id
@@ -48,5 +48,5 @@ def get_course_grades(course_id):
                 student_submission:dict = read_submission_student(student_id,question_id)
                 chosen_correctly = student_submission.get("correct")
             score_list.append({"correctness":chosen_correctly,"question_id":question_id})
-        gradeList.append({"student_id":student_id,"score_list":score_list})
-        return gradeList
+        gradeList.append({"student_id":student_id,"score_list":score_list,"name":user.get("name")})
+        return json.dumps(gradeList)
