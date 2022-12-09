@@ -22,11 +22,9 @@ export default {
       isInstructor: false,
     };
   },
-  // NEED TO GET THE COURSE ID, RIGHT NOW ITS THE EMPTY STRING
+  // Need to also get the course_id, right now it is blank
   beforeMount() {
     // api should return a boolean, true if the user is an instructor, false otherwise
-    // if the user is an instructor, QuestionTab should display a list of questions they've created
-    // if the user is a student, QuestionTab should open a WebSocket connection, and show questions and live timer.
     axios.get("/course/" + this.course_id + "/instructor").then((response) => {
       this.isInstructor = response.data;
       // push params/state to the Vue Router Here

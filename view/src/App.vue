@@ -13,13 +13,9 @@
 <script>
 /* eslint-disable */
 import axios from "axios";
-import QuestionTab from "./views/QuestionTab.vue";
 
 export default {
   name: "App",
-  components: {
-    QuestionTab,
-  },
   data() {
     return {
       loggedIn: false,
