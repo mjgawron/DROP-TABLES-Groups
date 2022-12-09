@@ -7,6 +7,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import axios from "axios";
 import CourseTabs from "../components/CourseTabs.vue";
 

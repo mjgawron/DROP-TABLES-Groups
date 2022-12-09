@@ -2,8 +2,8 @@
   <div class="list">
     <!-- If the user is an instructor, populate an InsQuestionComp for every question in the array -->
     <div class="instructor" v-if="isInstructor">
-      <div :key="question.question_id" v-for="question in questions">
-        <InsQuestionComp :question="question" />
+      <div :key="question.question_id" v-for="(question, idx) in questions">
+        <InsQuestionComp :iterator="idx + 1" :question="question" />
       </div>
     </div>
     <!-- If the user is a student, populate a QuestionComp for each question in the array -->
