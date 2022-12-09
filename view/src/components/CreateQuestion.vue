@@ -109,13 +109,15 @@ export default {
       this.question.course_id = Number(this.course_id);
       axios
         .post("/question", this.question)
-        .then(() => {
+        .then((response) => {
+          this.sock.action = "start";
+          const socket = new WebSocket(
+            "ws://" + window.location.host + "/api/ws/" + response.data.id
+          );
+          socket.send(JSON.stringify(this.sock));
           this.$router.push("/course/" + this.course_id);
         })
         .catch(() => {});
-      this.sock.action = "start";
-      const socket = new WebSocket("");
-      socket.send(JSON.stringify(this.sock));
     },
   },
 };

@@ -8,7 +8,7 @@
 </template>
 
 <script>
-// import axios from "axios";
+import axios from "axios";
 import CourseTabs from "../components/CourseTabs.vue";
 import QuestionList from "../components/QuestionList.vue";
 
@@ -16,7 +16,7 @@ export default {
   name: "StudentQuestions",
   data() {
     return {
-      // questions: [{}],
+      questions: [],
       id: "",
     };
   },

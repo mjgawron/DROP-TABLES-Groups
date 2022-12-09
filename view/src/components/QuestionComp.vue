@@ -71,7 +71,7 @@ export default {
     };
   },
   props: {
-    question: Object,
+    question: new Object(),
   },
   methods: {
     sendChoice(e) {
@@ -84,8 +84,14 @@ export default {
       this.socket.send(submissionData);
     },
   },
+  beforeMount() {
+    this.id = this.$router.currentRoute.value.params.question_id;
+
+  },
   mounted() {
-    this.socket = new WebSocket('');
+    this.socket = new WebSocket(
+      'ws://' + window.location.host + '/api/ws/' + this.id
+      );
     this.socket.onmessage = (ws_message) => {
       const message = JSON.parse(ws_message.data);
       const messageType = message.action;
