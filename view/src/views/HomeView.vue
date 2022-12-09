@@ -43,24 +43,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.home {
-  display: inline-flex;
-  flex-direction: column;
-  color: white;
-  background-color: black;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
-  width: 95%;
-}
-.container {
-  display: inline-flex;
-  flex-direction: column;
-  color: white;
-  background-color: lightslategray;
-  margin-bottom: 10px;
-  width: 100%;
-}
-</style>

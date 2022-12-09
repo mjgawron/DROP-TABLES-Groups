@@ -16,7 +16,7 @@ export default {
 
 <style scoped>
 nav {
-  padding: 30px;
+  padding: 12px;
   display: inline-flex;
   flex-direction: row;
   color: white;
@@ -26,6 +26,8 @@ nav {
   margin-bottom: 10px;
   position: sticky;
   top: 78px;
+  width: 100%;
+  box-sizing: border-box;
 }
 nav a {
   font-weight: bold;
