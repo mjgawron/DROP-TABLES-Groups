@@ -4,22 +4,28 @@
       <router-link to="/">Home</router-link>
       <router-link v-if="!loggedIn" to="/login">Login</router-link>
       <router-link v-if="!loggedIn" to="/register">Register</router-link>
+      <router-link v-if="loggedIn" to="/account">Profile</router-link>
       <a href="" @click="logout" v-if="loggedIn">Logout</a>
     </nav>
     <div class="main">
       <router-view />
     </div>
   </div>
+  <AccountView />
 </template>
 
 <script>
 /* eslint-disable */
 import axios from "axios";
+import AccountView from "./views/AccountView.vue";
 
 export default {
   name: "App",
   data() {
     return {};
+  },
+  components: {
+    AccountView,
   },
   computed: {
     loggedIn() {

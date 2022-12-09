@@ -12,6 +12,15 @@ const routes = [
     },
   },
   {
+    path: "/account",
+    name: "account",
+    component: function () {
+      return import(
+        /* webpackChunkName: "home" */ "../views/AccountView.vue"
+        );
+    },
+  },
+  {
     path: "/login",
     name: "login",
     component: function () {
