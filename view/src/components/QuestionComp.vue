@@ -89,7 +89,7 @@ export default {
   },
   mounted() {
     this.socket = new WebSocket(
-      'ws://' + window.location.host + '/api/ws/' + this.question.id
+      'wss://' + window.location.host + '/api/ws/' + this.question.id
       );
     this.socket.onmessage = (ws_message) => {
       const message = JSON.parse(ws_message.data);

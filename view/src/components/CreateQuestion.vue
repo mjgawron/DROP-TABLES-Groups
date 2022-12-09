@@ -112,7 +112,7 @@ export default {
         .then((response) => {
           this.sock.action = "start";
           const socket = new WebSocket(
-            "ws://" + window.location.host + "/api/ws/" + response.data.id
+            "wss://" + window.location.host + "/api/ws/" + response.data.id
           );
           socket.onopen = () => socket.send(JSON.stringify(this.sock));
           this.$router.push("/course/" + this.course_id + "/");
