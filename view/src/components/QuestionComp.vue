@@ -7,45 +7,45 @@
         <div class="a">
           <input
             type="radio"
-            id="radio_a"
+            :id="'radio_a' + question.id"
             name="a"
             v-model="choice"
             value="a"
           />
-          <label for="radio_a">A: {{ question.answer_a }}</label>
+          <label :for="'radio_a' + question.id">A: {{ question.answer_a }}</label>
         </div>
 
         <div class="b">
           <input
             type="radio"
-            id="radio_b"
+            :id="'radio_b'+ question.id"
             name="b"
             v-model="choice"
             value="b"
           />
-          <label for="radio_b">B: {{ question.answer_b }}</label>
+          <label :for="'radio_b' + question.id">B: {{ question.answer_b }}</label>
         </div>
 
         <div class="c">
           <input
             type="radio"
-            id="radio_c"
+            :id="'radio_c' + question.id"
             name="c"
             v-model="choice"
             value="c"
           />
-          <label for="radio_c">C: {{ question.answer_c }}</label>
+          <label :for="'radio_c' + question.id">C: {{ question.answer_c }}</label>
         </div>
 
         <div class="d">
           <input
             type="radio"
-            id="radio_d"
+            :id="'radio_d' + question.id"
             name="d"
             v-model="choice"
             value="d"
           />
-          <label for="radio_d">D: {{ question.answer_d }}</label>
+          <label :for="'radio_d' + question.id">D: {{ question.answer_d }}</label>
         </div>
 
         <button>Submit Answer</button>
@@ -76,7 +76,7 @@ export default {
         choice: this.choice,
         action: "submit",
       };
-      this.socket.send(submissionData);
+      this.socket.send(JSON.stringify(submissionData));
     },
   },
   mounted() {
@@ -86,6 +86,7 @@ export default {
     this.socket.onmessage = (ws_message) => {
       const message = JSON.parse(ws_message.data);
       const messageType = message.action;
+
       switch (messageType) {
         case 'timer':
           this.timeRemaining = message.timeRemaining;

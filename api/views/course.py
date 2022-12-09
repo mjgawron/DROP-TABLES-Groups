@@ -23,6 +23,8 @@ def post_course_route_join(id):
     token = request.cookies.get("auth")
     user:dict = get_user_by_token(token)
     user_id = user.get("id")
+    if(is_instructor(user_id,course_id)):
+        abort(400)
     enroll_student(user_id,course_id)
     return "success" , 201
 
