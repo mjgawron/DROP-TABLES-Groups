@@ -92,6 +92,15 @@ const routes = [
           );
         },
       },
+      {
+        path: "roster",
+        name: "roster",
+        component: function () {
+          return import(
+            /* webpackChunkName: "chat" */ "../views/RosterView.vue"
+          );
+        },
+      }
     ],
   },
 ];

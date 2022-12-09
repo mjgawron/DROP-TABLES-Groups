@@ -3,10 +3,12 @@
     <router-link to="questions">Questions</router-link>|
     <router-link to="chat">Chat</router-link>|
     <router-link to="grades">Gradebook</router-link>|
+    <router-link to="roster">Roster</router-link>|
   </nav>
 </template>
 
 <script>
+/* eslint-disable */
 export default {
   name: "CourseTabs",
 };
