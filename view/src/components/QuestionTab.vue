@@ -26,8 +26,8 @@ export default {
   },
   methods: {},
   beforeMount() {
-    this.id = this.$router.currentRoute.value.params.course_id;
-    axios.get("/question" + this.course_id + "/questions").then((response) => {
+    this.course_id = this.$router.currentRoute.value.params.course_id;
+    axios.get("/course/" + this.course_id + "/questions").then((response) => {
       this.questions = response.data;
     });
   },
