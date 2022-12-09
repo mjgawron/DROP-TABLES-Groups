@@ -5,7 +5,7 @@
       <router-link v-if="!loggedIn" to="/login">Login</router-link>
       <router-link v-if="!loggedIn" to="/register">Register</router-link>
       <router-link v-if="loggedIn" to="/account">Profile</router-link>
-      <a href="" @click="logout" v-if="loggedIn">Logout</a>
+      <a @click="logout" v-if="loggedIn">Logout</a>
     </nav>
     <div class="main">
       <router-view />
@@ -38,6 +38,9 @@ export default {
 </script>
 
 <style>
+body {
+  margin: 0;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -59,6 +62,8 @@ nav {
 nav a {
   font-weight: bold;
   color: white;
+  cursor: pointer;
+  text-decoration: underline;
 }
 nav a.router-link-exact-active {
   color: #42b983;

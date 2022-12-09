@@ -1,7 +1,7 @@
 <template>
   <div class="menubar">
     <img src="../assets/propellerhat.jpg" alt="jesse" width="50" height="50" />
-    <p>Welcome {{ name }}</p>
+    <h3>Welcome, {{ name }}</h3>
     <div class="dropdown">
       <button @click="onToggle" class="toolbar-button">{{ buttonChar }}</button>
       <router-link to="/join" v-if="toggle" class="toolbar-button"
