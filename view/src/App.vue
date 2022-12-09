@@ -11,21 +11,16 @@
       <router-view />
     </div>
   </div>
-  <AccountView />
 </template>
 
 <script>
 /* eslint-disable */
 import axios from "axios";
-import AccountView from "./views/AccountView.vue";
 
 export default {
   name: "App",
   data() {
     return {};
-  },
-  components: {
-    AccountView,
   },
   computed: {
     loggedIn() {

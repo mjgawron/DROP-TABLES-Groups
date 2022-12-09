@@ -16,7 +16,7 @@ const routes = [
     name: "account",
     component: function () {
       return import(
-        /* webpackChunkName: "home" */ "../views/AccountView.vue"
+        /* webpackChunkName: "account" */ "../views/AccountView.vue"
         );
     },
   },
@@ -106,7 +106,7 @@ const routes = [
         name: "grades",
         component: function () {
           return import(
-            /* webpackChunkName: "chat" */ "../views/GradeView.vue"
+            /* webpackChunkName: "grade" */ "../views/GradeView.vue"
           );
         },
       },
@@ -115,7 +115,7 @@ const routes = [
         name: "roster",
         component: function () {
           return import(
-            /* webpackChunkName: "chat" */ "../views/RosterView.vue"
+            /* webpackChunkName: "roster" */ "../views/RosterView.vue"
           );
         },
       }
