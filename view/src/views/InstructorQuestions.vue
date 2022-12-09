@@ -1,6 +1,5 @@
 <template>
   <div class="questions">
-    <CourseTabs />
     <div class="container">
       <CreateQuestion :course_id="id" />
     </div>
@@ -10,7 +9,6 @@
 <script>
 import axios from "axios";
 import CreateQuestion from "../components/CreateQuestion.vue";
-import CourseTabs from "../components/CourseTabs.vue";
 
 export default {
   name: "InstructorQuestions",
@@ -23,7 +21,6 @@ export default {
     //
   },
   components: {
-    CourseTabs,
     CreateQuestion,
   },
   beforeMount() {
