@@ -3,7 +3,7 @@ from flask import Blueprint, request, abort
 from database.submission import list_submission, read_submission, read_submission_course, create_submission, delete_submission, update_submission, read_user_submissions, already_submitted, read_submission_student
 from database.questions import read_question, read_question_ids_course
 from database.course import is_member, is_enrolled, is_instructor, read_course
-from database.account import get_user_by_token
+from database.account import get_user_by_token, get_user_by_id
 
 submission = Blueprint("submission",__name__)
 
@@ -27,13 +27,17 @@ def get_course_grades(course_id):
         gradeList = []
         for student_id in roster:
             score_list = []
+
+            student:dict = get_user_by_id(student)
+            
+
             for question_id in question_ids:
                 chosen_correctly = False
                 if already_submitted(student_id,question_id):
                     student_submission:dict = read_submission_student(student_id,question_id)
                     chosen_correctly = student_submission.get("correct")
                 score_list.append({"correctness":chosen_correctly,"question_id":question_id})
-            gradeList.append({"student_id":student_id,"score_list":score_list,"name":user.get("name")})
+            gradeList.append({"student_id":student_id,"score_list":score_list,"name":student.get("name")})
         return json.dumps(gradeList)
     
     else:
