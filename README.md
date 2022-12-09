@@ -8,6 +8,8 @@ Collaborators:
 - Jessica Breuhaus jlbreuha
 - Matt Gawron mjgawron
 
+Our app, "Ballcap" can be reached at https://jesseballcap.com/
+
 Creating a development database:
 
 ```docker run --name project -p 27017:27017 -d mongo:4.2.5```
