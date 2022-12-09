@@ -1,9 +1,9 @@
 <template>
   <nav>
-    <router-link to="questions">Questions</router-link>|
-    <router-link to="chat">Chat</router-link>|
-    <router-link to="grades">Gradebook</router-link>|
-    <router-link to="roster">Roster</router-link>|
+    <router-link to="questions">Questions</router-link>
+    <router-link to="chat">Chat</router-link>
+    <router-link to="grades">Gradebook</router-link>
+    <router-link to="roster">Roster</router-link>
   </nav>
 </template>
 
@@ -14,7 +14,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 nav {
   padding: 30px;
   display: inline-flex;
@@ -24,7 +24,8 @@ nav {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
-  width: 95%;
+  position: sticky;
+  top: 78px;
 }
 nav a {
   font-weight: bold;

@@ -18,12 +18,14 @@ export default {
   data() {
     return {
       course_name: "",
-    }
+    };
   },
   beforeMount() {
-    axios.get("/course/" + this.$router.currentRoute.value.params.course_id).then((response) => {
-      this.course_name = response.data.name;
-    });
+    axios
+      .get("/course/" + this.$router.currentRoute.value.params.course_id)
+      .then((response) => {
+        this.course_name = response.data.name;
+      });
   },
 };
 </script>
