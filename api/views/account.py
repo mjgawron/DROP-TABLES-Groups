@@ -45,7 +45,7 @@ def post_register_route():
     resp.set_cookie("auth", add_auth_token(user_id), max_age=31556952, httponly=True)
     return resp
 
-@account.route("/",methods=["PUT"])
+@account.route("",methods=["PUT"])
 def change_account():
     token = request.cookies.get("auth")
     data = request.json
