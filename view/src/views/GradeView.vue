@@ -19,15 +19,12 @@ export default {
       grades: [],
     }
   },
-  props: {
-    course_id: String,
-  },
   components: {
     CourseTabs,
     GradeList,
   },
   beforeMount() {
-    axios.get("/submission/" + this.course_id + "/grades").then((response) => {
+    axios.get("/submission/" + this.$router.currentRoute.value.params.course_id + "/grades").then((response) => {
       grades = response.data;
     });
   },

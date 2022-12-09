@@ -27,8 +27,8 @@ export default {
     questions: Array,
   },
   components: {
-    QuestionComp,
     InsQuestionComp,
+    QuestionComp,
   },
 };
 </script>

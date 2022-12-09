@@ -7,25 +7,26 @@
 
 <script>
 /* eslint-disable */
-//import axios from "axios";
+import axios from "axios";
 import QuestionList from "../components/QuestionList.vue";
 
 export default {
   name: "QuestionTab",
-  props: {
-    isInstructor: Boolean,
-  },
   components: {
     QuestionList,
   },
   data() {
     return {
+      isInstructor: false,
       questions: [],
     };
   },
   beforeMount() {
-    axios.get("/course/" + this.course_id + "/questions").then((response) => {
+    axios.get("/course/" + this.$router.currentRoute.value.params.course_id + "/questions").then((response) => {
       this.questions = response.data;
+    });
+    axios.get("/course/" + this.$router.currentRoute.value.params.course_id + "/instructor").then((response) => {
+      this.isInstructor = response.data;
     });
   },
 };

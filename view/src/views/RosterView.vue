@@ -14,16 +14,13 @@ export default {
   components: {
     RosterList,
   },
-  props: {
-    course_id: String,
-  },
   data() {
     return {
       students: [],
     }
   },
   beforeMount() {
-    axios.get("/course/" + this.course_id + "/roster").then((response)=> {
+    axios.get("/course/" + this.$router.currentRoute.value.params.course_id + "/roster").then((response)=> {
         this.students = response.data;
     });
   },
