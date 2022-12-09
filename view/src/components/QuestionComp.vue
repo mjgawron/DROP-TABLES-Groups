@@ -51,9 +51,7 @@
         <button>Submit Answer</button>
       </form>
     </div>
-    <div class="timer">
-      Time Remaining: {{ timeRemaining }}
-    </div>
+    <div class="timer">Time Remaining: {{ timeRemaining }}</div>
   </div>
 </template>
 

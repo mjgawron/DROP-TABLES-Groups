@@ -114,7 +114,7 @@ export default {
           const socket = new WebSocket(
             "ws://" + window.location.host + "/api/ws/" + response.data.id
           );
-          socket.send(JSON.stringify(this.sock));
+          socket.onopen = () => socket.send(JSON.stringify(this.sock));
           this.$router.push("/course/" + this.course_id);
         })
         .catch(() => {});

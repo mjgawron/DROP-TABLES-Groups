@@ -29,7 +29,10 @@ def websocket_handler(ws, id):
 
 def broadcast(room, data):
     for connection in ws_rooms.get(room, set()):
-        connection.send(data)
+        try:
+            connection.send(data)
+        except: 
+            pass
 
 def join_room(room, connection):
     ws_rooms[room] = ws_rooms.get(room, set())
