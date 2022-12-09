@@ -71,7 +71,7 @@ export default {
   },
   props: {
     question: new Object(),
-    id: String,
+    course_id: String,
   },
   methods: {
     sendChoice(e) {
@@ -87,7 +87,7 @@ export default {
   mounted() {
 
     this.socket = new WebSocket(
-      'ws://' + window.location.host + '/api/ws/' + this.id
+      'ws://' + window.location.host + '/api/ws/' + this.course_id
       );
     this.socket.onmessage = (ws_message) => {
       const message = JSON.parse(ws_message.data);

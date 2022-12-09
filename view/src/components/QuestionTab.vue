@@ -3,7 +3,7 @@
     <div class="bar"></div>
     <div class="question">
       <!-- <RouterView></RouterView> -->
-      <QuestionList :questions="questions" :id="id" />
+      <QuestionList :questions="questions" :course_id="course_id" />
     </div>
   </div>
 </template>
@@ -22,12 +22,12 @@ export default {
   data() {
     return {
       questions: [],
-      id: "",
+      course_id: "",
     };
   },
   methods: {},
   beforeMount() {
-    this.id = this.$router.currentRoute.value.params.course_id;
+    this.course_id = this.$router.currentRoute.value.params.course_id;
     axios.get("/question" + this.course_id + "/questions").then((response) => {
       this.questions = response.data;
     });
