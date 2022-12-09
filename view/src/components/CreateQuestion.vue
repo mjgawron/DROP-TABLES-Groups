@@ -115,7 +115,7 @@ export default {
             "ws://" + window.location.host + "/api/ws/" + response.data.id
           );
           socket.onopen = () => socket.send(JSON.stringify(this.sock));
-          this.$router.push("/course/" + this.course_id);
+          this.$router.push("/course/" + this.course_id + "/");
         })
         .catch(() => {});
     },
