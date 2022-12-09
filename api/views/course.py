@@ -127,3 +127,17 @@ def get_courses_user_joinable():
         reformated = {"instructors":new_instructors,"name":course.get("name"),"description":course.get("description"),"id":course.get("id")}
         reformed.append(reformated)
     return json.dumps(reformed)
+
+@course.route("<int:id>/roster",methods=["GET"])
+def get_course_roster(id):
+    token = request.cookies.get("auth")
+    user:dict = get_user_by_token(token)
+    if not is_instructor(user.get("id"),id):
+        abort(400)
+    course:dict = read_course(id)
+    course_roster = course.get("students")
+    roster = []
+    for student_id in course_roster:
+        student = get_user_by_id(student_id)
+        roster.append({"name":student.get("name"),"username":student.get("username")})
+    return json.dumps(roster)
