@@ -65,27 +65,24 @@ export default {
   name: "QuestionComp",
   data() {
     return {
-      id: 0,
       choice: "",
       timeRemaining: 0,
     };
   },
   props: {
     question: new Object(),
+    id: String,
   },
   methods: {
     sendChoice(e) {
       e.preventDefault();
       const submissionData = {
-        id: this.id,
+        // id: this.id,
         choice: this.choice,
         action: "submit",
       };
       this.socket.send(submissionData);
     },
-  },
-  beforeMount() {
-    this.id = this.$router.currentRoute.value.params.question_id;
   },
   mounted() {
 
