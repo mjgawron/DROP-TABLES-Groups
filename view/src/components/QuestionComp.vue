@@ -86,9 +86,9 @@ export default {
   },
   beforeMount() {
     this.id = this.$router.currentRoute.value.params.question_id;
-
   },
   mounted() {
+
     this.socket = new WebSocket(
       'ws://' + window.location.host + '/api/ws/' + this.id
       );
